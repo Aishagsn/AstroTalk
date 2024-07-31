@@ -14,6 +14,9 @@
 		2998CE8F2C54162600DD844B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2998CE8E2C54162600DD844B /* Base */; };
 		2998CE982C54EF7400DD844B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998CE972C54EF7400DD844B /* LoginController.swift */; };
 		2998CE9A2C54EF8700DD844B /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998CE992C54EF8700DD844B /* RegisterController.swift */; };
+		2998CE9D2C5A7EEF00DD844B /* RegisterStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998CE9C2C5A7EEF00DD844B /* RegisterStruct.swift */; };
+		2998CEA12C5A838000DD844B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998CEA02C5A838000DD844B /* LoginViewModel.swift */; };
+		2998CEA32C5A839000DD844B /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998CEA22C5A839000DD844B /* RegisterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		2998CE902C54162600DD844B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2998CE972C54EF7400DD844B /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		2998CE992C54EF8700DD844B /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		2998CE9C2C5A7EEF00DD844B /* RegisterStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStruct.swift; sourceTree = "<group>"; };
+		2998CEA02C5A838000DD844B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		2998CEA22C5A839000DD844B /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,7 @@
 				2998CE842C54162500DD844B /* SceneDelegate.swift */,
 				2998CE882C54162500DD844B /* Main.storyboard */,
 				2998CE962C54EF5700DD844B /* Scene */,
+				2998CE9B2C5A7ECB00DD844B /* Model */,
 				2998CE8B2C54162600DD844B /* Assets.xcassets */,
 				2998CE8D2C54162600DD844B /* LaunchScreen.storyboard */,
 				2998CE902C54162600DD844B /* Info.plist */,
@@ -72,10 +79,36 @@
 		2998CE962C54EF5700DD844B /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				2998CE972C54EF7400DD844B /* LoginController.swift */,
-				2998CE992C54EF8700DD844B /* RegisterController.swift */,
+				2998CE9E2C5A834600DD844B /* Login */,
+				2998CE9F2C5A835500DD844B /* Register */,
 			);
 			path = Scene;
+			sourceTree = "<group>";
+		};
+		2998CE9B2C5A7ECB00DD844B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2998CE9C2C5A7EEF00DD844B /* RegisterStruct.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2998CE9E2C5A834600DD844B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2998CE972C54EF7400DD844B /* LoginController.swift */,
+				2998CEA02C5A838000DD844B /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		2998CE9F2C5A835500DD844B /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				2998CE992C54EF8700DD844B /* RegisterController.swift */,
+				2998CEA22C5A839000DD844B /* RegisterViewModel.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,8 +184,11 @@
 			files = (
 				2998CE9A2C54EF8700DD844B /* RegisterController.swift in Sources */,
 				2998CE982C54EF7400DD844B /* LoginController.swift in Sources */,
+				2998CEA32C5A839000DD844B /* RegisterViewModel.swift in Sources */,
+				2998CEA12C5A838000DD844B /* LoginViewModel.swift in Sources */,
 				2998CE832C54162500DD844B /* AppDelegate.swift in Sources */,
 				2998CE852C54162500DD844B /* SceneDelegate.swift in Sources */,
+				2998CE9D2C5A7EEF00DD844B /* RegisterStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
