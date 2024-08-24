@@ -7,9 +7,15 @@
 
 import Foundation
 
-class LoginViewModel{
+class LoginViewModel {
     var onError: ((String) -> Void)?
     var onSuccess: (() -> Void)?
+    var coordinator: AppCoordinator?
+    
+    // Initialize with coordinator
+    init(coordinator: AppCoordinator? = nil) {
+        self.coordinator = coordinator
+    }
     
     func loginUser(username: String, password: String) {
         guard let url = URL(string: "https://yourapi.com/login") else {
@@ -42,7 +48,15 @@ class LoginViewModel{
                 return
             }
 
+            // Assuming the API returns the JWT token in the response body
+            if let data = data, let token = String(data: data, encoding: .utf8) {
+                // Store the JWT token securely (e.g., in Keychain)
+                print("JWT Token: \(token)")
+            }
+
+            // On success, use the coordinator to navigate to the home screen
             self?.onSuccess?()
+            self?.coordinator?.navigateToHome()
         }
 
         task.resume()

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		290C38AE2C7A3BE6001D5D0E /* PlanetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38AD2C7A3BE6001D5D0E /* PlanetViewController.swift */; };
+		290C38B02C7A3BF6001D5D0E /* PlanetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38AF2C7A3BF6001D5D0E /* PlanetViewModel.swift */; };
+		290C38B32C7A3D0D001D5D0E /* PlanetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38B22C7A3D0D001D5D0E /* PlanetService.swift */; };
+		290C38B62C7A3D68001D5D0E /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38B52C7A3D68001D5D0E /* Planet.swift */; };
+		290C38BA2C7A3EC9001D5D0E /* PlanetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38B92C7A3EC9001D5D0E /* PlanetDetailViewModel.swift */; };
+		290C38BC2C7A3ED9001D5D0E /* PlanetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38BB2C7A3ED9001D5D0E /* PlanetDetailViewController.swift */; };
+		290C38BE2C7A3FDC001D5D0E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38BD2C7A3FDC001D5D0E /* Observable.swift */; };
 		2998CE832C54162500DD844B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998CE822C54162500DD844B /* AppDelegate.swift */; };
 		2998CE852C54162500DD844B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998CE842C54162500DD844B /* SceneDelegate.swift */; };
 		2998CE8A2C54162500DD844B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2998CE892C54162500DD844B /* Base */; };
@@ -30,6 +37,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		290C38AD2C7A3BE6001D5D0E /* PlanetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewController.swift; sourceTree = "<group>"; };
+		290C38AF2C7A3BF6001D5D0E /* PlanetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewModel.swift; sourceTree = "<group>"; };
+		290C38B22C7A3D0D001D5D0E /* PlanetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetService.swift; sourceTree = "<group>"; };
+		290C38B52C7A3D68001D5D0E /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
+		290C38B92C7A3EC9001D5D0E /* PlanetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDetailViewModel.swift; sourceTree = "<group>"; };
+		290C38BB2C7A3ED9001D5D0E /* PlanetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDetailViewController.swift; sourceTree = "<group>"; };
+		290C38BD2C7A3FDC001D5D0E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		2998CE7F2C54162500DD844B /* AstroTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AstroTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2998CE822C54162500DD844B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2998CE842C54162500DD844B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +79,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		290C38AC2C7A3BD5001D5D0E /* Planet */ = {
+			isa = PBXGroup;
+			children = (
+				290C38B82C7A3EAB001D5D0E /* ViewModel */,
+				290C38B72C7A3EA3001D5D0E /* View */,
+				290C38B42C7A3D56001D5D0E /* Model */,
+			);
+			path = Planet;
+			sourceTree = "<group>";
+		};
+		290C38B12C7A3CFB001D5D0E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				290C38B22C7A3D0D001D5D0E /* PlanetService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		290C38B42C7A3D56001D5D0E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				290C38B52C7A3D68001D5D0E /* Planet.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		290C38B72C7A3EA3001D5D0E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				290C38AD2C7A3BE6001D5D0E /* PlanetViewController.swift */,
+				290C38BB2C7A3ED9001D5D0E /* PlanetDetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		290C38B82C7A3EAB001D5D0E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				290C38AF2C7A3BF6001D5D0E /* PlanetViewModel.swift */,
+				290C38B92C7A3EC9001D5D0E /* PlanetDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		2998CE762C54162500DD844B = {
 			isa = PBXGroup;
 			children = (
@@ -87,7 +145,9 @@
 				2998CE822C54162500DD844B /* AppDelegate.swift */,
 				2998CE842C54162500DD844B /* SceneDelegate.swift */,
 				2998CFC12C76008B00DD844B /* AppCoordinator.swift */,
+				290C38BD2C7A3FDC001D5D0E /* Observable.swift */,
 				2998CE882C54162500DD844B /* Main.storyboard */,
+				290C38B12C7A3CFB001D5D0E /* Service */,
 				2998CEC92C5CEB0200DD844B /* ReusableView */,
 				2998CE962C54EF5700DD844B /* Scene */,
 				2998CE8B2C54162600DD844B /* Assets.xcassets */,
@@ -100,6 +160,7 @@
 		2998CE962C54EF5700DD844B /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				290C38AC2C7A3BD5001D5D0E /* Planet */,
 				2998CEBF2C5CE98C00DD844B /* Home */,
 				2998CE9E2C5A834600DD844B /* Login */,
 				2998CE9F2C5A835500DD844B /* Register */,
@@ -255,19 +316,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				290C38B02C7A3BF6001D5D0E /* PlanetViewModel.swift in Sources */,
 				2998CE9A2C54EF8700DD844B /* RegisterController.swift in Sources */,
 				2998CED92C5CF3F100DD844B /* MotivationCollectionViewCell.swift in Sources */,
+				290C38B62C7A3D68001D5D0E /* Planet.swift in Sources */,
 				2998CEC52C5CE9FB00DD844B /* HomeViewModel.swift in Sources */,
 				2998CECD2C5CEB3300DD844B /* StoryCollectionViewCell.swift in Sources */,
 				2998CE982C54EF7400DD844B /* LoginController.swift in Sources */,
+				290C38AE2C7A3BE6001D5D0E /* PlanetViewController.swift in Sources */,
 				2998CEA32C5A839000DD844B /* RegisterViewModel.swift in Sources */,
 				2998CFC22C76008B00DD844B /* AppCoordinator.swift in Sources */,
+				290C38BE2C7A3FDC001D5D0E /* Observable.swift in Sources */,
 				2998CEA12C5A838000DD844B /* LoginViewModel.swift in Sources */,
 				2998CEC82C5CEA2E00DD844B /* HomeViewController.swift in Sources */,
 				2998CEC22C5CE9C900DD844B /* Struct.swift in Sources */,
+				290C38B32C7A3D0D001D5D0E /* PlanetService.swift in Sources */,
 				2998CE832C54162500DD844B /* AppDelegate.swift in Sources */,
+				290C38BA2C7A3EC9001D5D0E /* PlanetDetailViewModel.swift in Sources */,
 				2998CE852C54162500DD844B /* SceneDelegate.swift in Sources */,
 				2998CE9D2C5A7EEF00DD844B /* RegisterStruct.swift in Sources */,
+				290C38BC2C7A3ED9001D5D0E /* PlanetDetailViewController.swift in Sources */,
 				2998CED32C5CEB7900DD844B /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,8 +11,15 @@ class RegisterViewModel {
     var onError: ((String) -> Void)?
     var onSuccess: (() -> Void)?
     
+    var coordinator: AppCoordinator?
+    
+    // Custom initializer with coordinator
+    init(coordinator: AppCoordinator? = nil) {
+        self.coordinator = coordinator
+    }
+
     func registerUser(user: User) {
-        guard let url = URL(string: "https://yourapi.com/register") else {
+        guard let url = URL(string: "https://Test.com/api/auth/register") else {
             onError?("Invalid URL")
             return
         }
@@ -42,6 +49,8 @@ class RegisterViewModel {
             }
 
             self?.onSuccess?()
+            // Navigate using the coordinator after successful registration
+            self?.coordinator?.start() // Placeholder for the actual navigation function
         }
 
         task.resume()

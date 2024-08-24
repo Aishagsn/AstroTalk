@@ -17,25 +17,11 @@ class RegisterController: UIViewController {
     @IBOutlet private weak var nameTextField: UITextField!
     
     var viewModel = RegisterViewModel()
-    var coordinator : AppCoordinator
-    init(viewModel: RegisterViewModel, coordinator: AppCoordinator) {
-            self.viewModel = viewModel
-            self.coordinator = coordinator
-            super.init(nibName: nil, bundle: nil)
-        }
 
-        // Required initializer for storyboard
-        required init?(coder: NSCoder) {
-            self.viewModel = RegisterViewModel()  // Default initialization
-            // Initialize with a default or dummy UINavigationController
-            let defaultNavigationController = UINavigationController()
-            self.coordinator = AppCoordinator(navigationController: defaultNavigationController)
-            super.init(coder: coder)
-        }
     override func viewDidLoad() {
             super.viewDidLoad()
             bindViewModel()
-            coordinator.navigateToRegister()
+       
         }
         @IBAction func registerTappedButton(_ sender: Any) {
             guard let name = nameTextField.text, !name.isEmpty,
@@ -58,7 +44,7 @@ class RegisterController: UIViewController {
         }
         
         @IBAction func loginTappedButton(_ sender: Any) {
-            coordinator.start()
+            viewModel.coordinator?.start()
         }
         
        private func bindViewModel() {
@@ -71,7 +57,7 @@ class RegisterController: UIViewController {
             viewModel.onSuccess = { [weak self] in
                 DispatchQueue.main.async {
                     self?.showAlert(title: "Success", message: "Registration successful!") {
-                        self?.coordinator.start()
+                        self?.viewModel.coordinator?.start()
                     }
                 }
             }
