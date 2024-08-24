@@ -36,8 +36,8 @@ class HomeViewController: UIViewController {
     }
     
     private func configureUI() {
-        greetingLabel.text = "Welcome, Aisha"
-        profileImageView.image = UIImage(named: "defaultProfileImage") // Placeholder image
+//        greetingLabel.text = "Welcome, Aisha"
+//        profileImageView.image = UIImage(named: "defaultProfileImage") // Placeholder image
         
         storiesCollectionView.delegate = self
         storiesCollectionView.dataSource = self
@@ -91,7 +91,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         return UICollectionViewCell()
     }
-}
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+          return CGSize(width: 100, height: 100)
+      }
+  }
+
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {

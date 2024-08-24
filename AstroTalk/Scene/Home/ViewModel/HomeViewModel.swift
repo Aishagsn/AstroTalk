@@ -17,6 +17,12 @@ class HomeViewModel {
     var onPostsFetched: (() -> Void)?
     var onMotivationMessagesFetched: (() -> Void)?
     
+   private var coordinator: AppCoordinator?
+    
+    init(coordinator: AppCoordinator? = nil) {
+          self.coordinator = coordinator
+      }
+    
     func fetchData() {
         // Mock API request to fetch stories, posts, and motivation messages data
         let mockAPIURL = "https://yourmockapi.com/api/data"
