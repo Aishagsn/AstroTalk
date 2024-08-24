@@ -16,14 +16,29 @@ class RegisterController: UIViewController {
     @IBOutlet private weak var surnameTextField: UITextField!
     @IBOutlet private weak var nameTextField: UITextField!
     
-    private var viewModel = RegisterViewModel()
-    
+    var viewModel = RegisterViewModel()
+    var coordinator : AppCoordinator
+    init(viewModel: RegisterViewModel, coordinator: AppCoordinator) {
+            self.viewModel = viewModel
+            self.coordinator = coordinator
+            super.init(nibName: nil, bundle: nil)
+        }
+
+        // Required initializer for storyboard
+        required init?(coder: NSCoder) {
+            self.viewModel = RegisterViewModel()  // Default initialization
+            // Initialize with a default or dummy UINavigationController
+            let defaultNavigationController = UINavigationController()
+            self.coordinator = AppCoordinator(navigationController: defaultNavigationController)
+            super.init(coder: coder)
+        }
     override func viewDidLoad() {
-        super.viewDidLoad()
-        bindViewModel()
-    }
-    @IBAction func registerTappedButton(_ sender: Any) {
-        guard let name = nameTextField.text, !name.isEmpty,
+            super.viewDidLoad()
+            bindViewModel()
+            coordinator.navigateToRegister()
+        }
+        @IBAction func registerTappedButton(_ sender: Any) {
+            guard let name = nameTextField.text, !name.isEmpty,
                   let surname = surnameTextField.text, !surname.isEmpty,
                   let username = usernameTextField.text, !username.isEmpty,
                   let email = emailTextField.text, !email.isEmpty,
@@ -39,14 +54,14 @@ class RegisterController: UIViewController {
             }
             
             let user = User(name: name, surname: surname, username: username, email: email, password: password)
-        viewModel.registerUser(user: user)
-    }
-    
-    @IBAction func loginTappedButton(_ sender: Any) {
-       navigateToLogin()
-    }
-    
-    private func bindViewModel() {
+            viewModel.registerUser(user: user)
+        }
+        
+        @IBAction func loginTappedButton(_ sender: Any) {
+            coordinator.start()
+        }
+        
+       private func bindViewModel() {
             viewModel.onError = { [weak self] errorMessage in
                 DispatchQueue.main.async {
                     self?.showAlert(title: "Error", message: errorMessage)
@@ -56,26 +71,19 @@ class RegisterController: UIViewController {
             viewModel.onSuccess = { [weak self] in
                 DispatchQueue.main.async {
                     self?.showAlert(title: "Success", message: "Registration successful!") {
-                        self?.navigateToLogin()
+                        self?.coordinator.start()
                     }
                 }
             }
         }
         
-        private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                completion?()
-            }
-            alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
-        }
-        
-        private func navigateToLogin() {
-            if let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginController") as? LoginController {
-                navigationController?.pushViewController(loginVC, animated: true)
-            }
-        }
-    }
-
-
+         private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
+               let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+               let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                   completion?()
+               }
+               alert.addAction(okAction)
+               present(alert, animated: true, completion: nil)
+           }
+       }
+    

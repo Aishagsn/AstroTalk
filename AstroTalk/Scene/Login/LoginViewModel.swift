@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LoginViewModel {
+class LoginViewModel{
     var onError: ((String) -> Void)?
     var onSuccess: (() -> Void)?
     

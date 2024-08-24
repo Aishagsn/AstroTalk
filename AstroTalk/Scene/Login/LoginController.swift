@@ -9,11 +9,29 @@ import UIKit
 
 class LoginController: UIViewController {
 
+    var viewModel: LoginViewModel?
+    var coordinator : AppCoordinator
     @IBOutlet private weak var usernameTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
+  
+
+    init(viewModel: LoginViewModel, coordinator: AppCoordinator) {
+            self.viewModel = viewModel
+            self.coordinator = coordinator
+            super.init(nibName: nil, bundle: nil)
+        }
+
+        // Required initializer for storyboard
+        required init?(coder: NSCoder) {
+            self.viewModel = LoginViewModel()  // Default initialization
+            // Initialize with a default or dummy UINavigationController
+            let defaultNavigationController = UINavigationController()
+            self.coordinator = AppCoordinator(navigationController: defaultNavigationController)
+            super.init(coder: coder)
+        }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        coordinator.start()
         
     }
     
@@ -28,7 +46,7 @@ class LoginController: UIViewController {
             }
     
     @IBAction func signupTappedButton(_ sender: Any) {
-        navigateToRegister()
+        coordinator.navigateToRegister()
     }
 
     
@@ -71,7 +89,7 @@ class LoginController: UIViewController {
                 print("Login successful")
                 DispatchQueue.main.async {
                     self.showAlert(title: "Success", message: "Login successful!")
-                    // Handle successful login, e.g., navigate to home screen
+                    self.coordinator.navigateToHome()
                 }
             } else {
                 print("Login failed with status code: \(response.statusCode)")
@@ -92,10 +110,9 @@ class LoginController: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-    
-    func navigateToRegister() {
-        if let registerVC = storyboard?.instantiateViewController(withIdentifier: "RegisterController") as? RegisterController {
-            navigationController?.pushViewController(registerVC, animated: true)
-        }
+    func configure(with viewModel: LoginViewModel) {
+           self.viewModel = viewModel
+       }
     }
-}
+    
+
