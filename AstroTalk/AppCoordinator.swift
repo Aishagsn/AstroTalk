@@ -50,8 +50,9 @@ class AppCoordinator {
     func showPlanets() {
             let planetService = PlanetService()
             let planetViewModel = PlanetViewModel(coordinator: self, planetService: planetService)
-            let planetVC = PlanetViewController()
-            planetVC.viewModel = planetViewModel
+        
+        let planetVC = PlanetViewController(viewModel: planetViewModel)
+//            planetVC.viewModel = planetViewModel
             navigationController.pushViewController(planetVC, animated: true)
         }
         

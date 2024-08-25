@@ -9,7 +9,18 @@ import UIKit
 
 class PlanetViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    var viewModel: PlanetViewModel!
+    var viewModel: PlanetViewModel
+    
+    init(tableView: UITableView!, viewModel: PlanetViewModel) {
+        self.tableView = tableView
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
