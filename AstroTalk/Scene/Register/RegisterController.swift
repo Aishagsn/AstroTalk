@@ -39,7 +39,7 @@ class RegisterController: UIViewController {
                 return
             }
             
-            let user = User(name: name, surname: surname, username: username, email: email, password: password)
+            let user = User(username: username, password: password, name: name, surname: surname, email: email, rePassword: reTypePassword)
             viewModel.registerUser(user: user)
         }
         

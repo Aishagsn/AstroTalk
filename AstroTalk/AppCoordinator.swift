@@ -47,14 +47,14 @@ class AppCoordinator {
             fatalError("HomeViewController not found in storyboard.")
         }
     }
-    func showPlanets() {
-            let planetService = PlanetService()
-            let planetViewModel = PlanetViewModel(coordinator: self, planetService: planetService)
-        
-        let planetVC = PlanetViewController(viewModel: planetViewModel)
-//            planetVC.viewModel = planetViewModel
-            navigationController.pushViewController(planetVC, animated: true)
-        }
+//    func showPlanets() {
+//            let planetService = PlanetService()
+//            let planetViewModel = PlanetViewModel(coordinator: self, planetService: planetService)
+//        
+////        let planetVC = PlanetViewController(viewModel: planetViewModel)
+//////            planetVC.viewModel = planetViewModel
+////            navigationController.pushViewController(planetVC, animated: true)
+////        }
         
         func showPlanetDetail(for planet: Planet) {
             let detailViewModel = PlanetDetailViewModel(planet: planet)

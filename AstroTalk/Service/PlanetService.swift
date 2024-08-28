@@ -8,7 +8,7 @@
 import Foundation
 
 class PlanetService {
-    let baseURL = "https://mockapi.io/planets"
+    let baseURL = "http://localhost:5000/api/Planets/1"
     
     func fetchPlanets(completion: @escaping (Result<[Planet], Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
