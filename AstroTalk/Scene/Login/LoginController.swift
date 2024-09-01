@@ -24,7 +24,7 @@ class LoginController: UIViewController {
 //      }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bindViewModel()
         
     }
     
@@ -35,11 +35,11 @@ class LoginController: UIViewController {
             return
         }
         
-        loginUser(username: username, password: password)
+        viewModel?.loginUser(username: username, password: password)
     }
     
     @IBAction func signupTappedButton(_ sender: Any) {
-        viewModel?.coordinator?.navigateToRegister()
+        //
     }
     
     
@@ -140,7 +140,7 @@ class LoginController: UIViewController {
                         
                         DispatchQueue.main.async {
                             self.showAlert(title: "Success", message: "Login successful!")
-                            self.viewModel?.coordinator?.navigateToHome()
+                            self.viewModel?.navigateToHome()
                         }
                     } else {
                         DispatchQueue.main.async {
@@ -163,18 +163,46 @@ class LoginController: UIViewController {
         
         task.resume()
     }
-    
-    func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            completion?()
-        }
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
-    }
-    func configure(with viewModel: LoginViewModel) {
-        self.viewModel = viewModel
-    }
-}
-
+//    
+//    func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
+//        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+//            completion?()
+//        }
+//        alert.addAction(okAction)
+//        present(alert, animated: true, completion: nil)
+//    }
+//    func configure(with viewModel: LoginViewModel) {
+//        self.viewModel = viewModel
+//    }
+//}
+    private func bindViewModel() {
+           // Handle error callback
+           viewModel?.onError = { [weak self] errorMessage in
+               DispatchQueue.main.async {
+                   self?.showAlert(title: "Error", message: errorMessage)
+               }
+           }
+           
+           // Handle success callback
+           viewModel?.onSuccess = { [weak self] in
+               DispatchQueue.main.async {
+                   self?.viewModel?.navigateToHome()
+               }
+           }
+       }
+       
+       private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
+           let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+           let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+               completion?()
+           }
+           alert.addAction(okAction)
+           present(alert, animated: true, completion: nil)
+       }
+       
+       func configure(with viewModel: LoginViewModel) {
+           self.viewModel = viewModel
+       }
+   }
 

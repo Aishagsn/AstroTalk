@@ -6,16 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 class LoginViewModel {
     var onError: ((String) -> Void)?
     var onSuccess: (() -> Void)?
-    var coordinator: AppCoordinator?
    
-//    init(coordinator: AppCoordinator?) {
-//        self.coordinator = coordinator
-//    }
-    
     func loginUser(username: String, password: String) {
         guard let url = URL(string: "http://35.223.201.116:8088/api/auth/login") else {
             onError?("Invalid URL")
@@ -95,9 +91,26 @@ class LoginViewModel {
 
             // Successfully updated user, proceed with further actions
             self?.onSuccess?()
-            self?.coordinator?.navigateToHome()
+            self?.navigateToHome()
         }
 
         task.resume()
+    }
+
+    func navigateToHome() {
+        DispatchQueue.main.async {
+            // Access the SceneDelegate
+            if let sceneDelegate = UIApplication.shared.connectedScenes
+                .first?.delegate as? SceneDelegate {
+                // Instantiate the HomeViewController
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+                    // Set the root view controller to HomeViewController
+                    let navController = UINavigationController(rootViewController: homeVC)
+                    sceneDelegate.window?.rootViewController = navController
+                    sceneDelegate.window?.makeKeyAndVisible()
+                }
+            }
+        }
     }
 }
