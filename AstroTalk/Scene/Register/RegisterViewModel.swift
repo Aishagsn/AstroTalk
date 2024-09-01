@@ -10,89 +10,99 @@ import Foundation
 class RegisterViewModel {
     var onError: ((String) -> Void)?
     var onSuccess: (() -> Void)?
+    
     var coordinator: AppCoordinator?
     
+    // Custom initializer with coordinator
     init(coordinator: AppCoordinator? = nil) {
         self.coordinator = coordinator
     }
     
-    func registerUser(user: User) {
-        guard let url = URL(string: "http://localhost:5000/api/auth/register") else {
+    // Function to validate registration data
+    func validateRegistration(name: String?, surname: String?, userName: String?, email: String?, password: String?) -> Bool {
+        guard let name = name, name.count >= 2, name.count <= 64 else { return false }
+        guard let surname = surname, surname.count >= 2, surname.count <= 64 else { return false }
+        guard let userName = userName, userName.count >= 2, userName.count <= 16 else { return false }
+        guard let email = email, email.contains("@") else { return false }
+        guard let password = password, password.count >= 6 else { return false } // Adjust based on actual password policy
+        return true
+    }
+
+    func registerUser(name: String?, surname: String?, userName: String?, email: String?, password: String?, phone: String?) {
+        // Validate user data before making the API request
+        guard validateRegistration(name: name, surname: surname, userName: userName, email: email, password: password) else {
+            onError?("Validation failed. Please check your input.")
+            return
+        }
+
+        guard let url = URL(string: "http://35.223.201.116:8088/api/auth/register") else {
             onError?("Invalid URL")
             return
         }
-        
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let parameters: [String: String?] = [
+            "firstName": name,
+            "lastName": surname,
+            "userName": userName,
+            "email": email,
+            "phone": phone,
+            "password": password
+        ]
         
         let encoder = JSONEncoder()
         do {
-            let jsonData = try encoder.encode(user)
+            let jsonData = try encoder.encode(parameters)
             request.httpBody = jsonData
         } catch {
             onError?("Error encoding user data: \(error.localizedDescription)")
             return
         }
-        
-        // Create a custom URLSession configuration
-        let sessionConfig = URLSessionConfiguration.default
-        sessionConfig.timeoutIntervalForRequest = 30.0
-        
-        let sessionDelegate = CustomSessionDelegate()
-        let session = URLSession(configuration: sessionConfig, delegate: sessionDelegate, delegateQueue: nil)
-        
-        //        let task = session.dataTask(with: request) { [weak self] data, response, error in
-        //            if let error = error {
-        //                self?.onError?("Error with registration: \(error.localizedDescription)")
-        //                return
-        //            }
-        //
-        //            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-        //                self?.onError?("Registration failed.")
-        //                return
-        //            }
-        //
-        //            self?.onSuccess?()
-        //            self?.coordinator?.start() // Placeholder for the actual navigation function
-        //        }
-        //
-        //        task.resume()
-        //    }
-        let task = session.dataTask(with: request) { [weak self] data, response, error in
+
+        let task = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             if let error = error {
                 self?.onError?("Error with registration: \(error.localizedDescription)")
                 return
             }
-            
+
             guard let response = response as? HTTPURLResponse else {
-                self?.onError?("Invalid response.")
+                self?.onError?("Invalid response from server.")
                 return
             }
-            
-            let statusCode = response.statusCode
-            if statusCode == 200 {
+
+            switch response.statusCode {
+            case 200:
                 self?.onSuccess?()
-                self?.coordinator?.start() // Placeholder for the actual navigation function
-            } else {
-                let responseString = String(data: data ?? Data(), encoding: .utf8) ?? "No response data"
-                self?.onError?("Registration failed with status code \(statusCode): \(responseString)")
+                self?.coordinator?.start() // Navigate to another screen or handle successful registration
+            case 201:
+                self?.onSuccess?()
+                self?.coordinator?.start()
+            case 400:
+                self?.onError?("Bad Request: Please check your input data.")
+            case 401:
+                self?.onError?("Unauthorized: Authentication failed.")
+            case 500:
+                self?.onError?("Server Error: Please try again later.")
+            default:
+                self?.onError?("Unexpected error occurred. Status code: \(response.statusCode)")
             }
         }
+
+        task.resume()
     }
-        
-        
-        // Custom URLSession delegate to bypass SSL validation
-        class CustomSessionDelegate: NSObject, URLSessionDelegate {
-            func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-                if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-                    completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                if let serverTrust = challenge.protectionSpace.serverTrust {
+                    completionHandler(.useCredential, URLCredential(trust: serverTrust))
                 } else {
                     completionHandler(.performDefaultHandling, nil)
                 }
+            } else {
+                completionHandler(.performDefaultHandling, nil)
             }
         }
-        
     }
 

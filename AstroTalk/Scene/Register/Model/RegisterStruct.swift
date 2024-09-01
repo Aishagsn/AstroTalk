@@ -14,3 +14,4 @@ struct User: Codable {
     let email: String
     let rePassword: String
 }
+

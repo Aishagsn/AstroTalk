@@ -13,7 +13,15 @@ class LoginController: UIViewController {
     @IBOutlet private weak var usernameTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     
-    
+//    init(viewModel: LoginViewModel, usernameTextField: UITextField!, passwordTextField: UITextField!) {
+//        self.viewModel = viewModel
+//        self.usernameTextField = usernameTextField
+//        self.passwordTextField = passwordTextField
+//    }
+//    
+//      required init?(coder: NSCoder) {
+//          fatalError("init(coder:) has not been implemented. Use the custom initializer instead.")
+//      }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,14 +43,64 @@ class LoginController: UIViewController {
     }
     
     
+//    func loginUser(username: String, password: String) {
+//        guard let url = URL(string: "http://35.223.201.116:8088/api/auth/login") else { return }
+//        
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        
+//        let credentials = ["userName": username, "password": password]
+//        let encoder = JSONEncoder()
+//        do {
+//            let jsonData = try encoder.encode(credentials)
+//            request.httpBody = jsonData
+//        } catch {
+//            print("Error encoding credentials: \(error)")
+//            showAlert(title: "Error", message: "Failed to login. Please try again.")
+//            return
+//        }
+//        
+//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//            if let error = error {
+//                print("Error with login: \(error)")
+//                DispatchQueue.main.async {
+//                    self.showAlert(title: "Error", message: "Failed to login. Please try again.")
+//                }
+//                return
+//            }
+//            guard let data = data, let response = response as? HTTPURLResponse else {
+//                print("No data or invalid response received")
+//                DispatchQueue.main.async {
+//                    self.showAlert(title: "Error", message: "Failed to login. Please try again.")
+//                }
+//                return
+//            }
+//            
+//            if response.statusCode == 200 {
+//                print("Login successful")
+//                DispatchQueue.main.async {
+//                    self.showAlert(title: "Success", message: "Login successful!")
+//                    self.viewModel?.coordinator?.navigateToHome()
+//                }
+//            } else {
+//                print("Login failed with status code: \(response.statusCode)")
+//                DispatchQueue.main.async {
+//                    self.showAlert(title: "Error", message: "Failed to login. Please check your credentials.")
+//                }
+//            }
+//        }
+//        
+//        task.resume()
+//    }
     func loginUser(username: String, password: String) {
-        guard let url = URL(string: "https://yourapi.com/login") else { return }
+        guard let url = URL(string: "http://35.223.201.116:8088/api/auth/login") else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let credentials = ["username": username, "password": password]
+        let credentials = ["userName": username, "password": password]
         let encoder = JSONEncoder()
         do {
             let jsonData = try encoder.encode(credentials)
@@ -61,7 +119,6 @@ class LoginController: UIViewController {
                 }
                 return
             }
-            
             guard let data = data, let response = response as? HTTPURLResponse else {
                 print("No data or invalid response received")
                 DispatchQueue.main.async {
@@ -71,10 +128,30 @@ class LoginController: UIViewController {
             }
             
             if response.statusCode == 200 {
-                print("Login successful")
-                DispatchQueue.main.async {
-                    self.showAlert(title: "Success", message: "Login successful!")
-                    self.viewModel?.coordinator?.navigateToHome()
+                do {
+                    // Decode the response to extract the token
+                    if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                       let accessToken = jsonResponse["accessToken"] as? String {
+                        
+                        // Store the token securely, here using UserDefaults for simplicity
+                        UserDefaults.standard.set(accessToken, forKey: "accessToken")
+                        
+                        print("Login successful, token stored: \(accessToken)")
+                        
+                        DispatchQueue.main.async {
+                            self.showAlert(title: "Success", message: "Login successful!")
+                            self.viewModel?.coordinator?.navigateToHome()
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.showAlert(title: "Error", message: "Failed to parse login response.")
+                        }
+                    }
+                } catch {
+                    print("Error parsing response data: \(error)")
+                    DispatchQueue.main.async {
+                        self.showAlert(title: "Error", message: "Failed to login. Please try again.")
+                    }
                 }
             } else {
                 print("Login failed with status code: \(response.statusCode)")

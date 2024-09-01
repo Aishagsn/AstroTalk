@@ -14,6 +14,21 @@
 		290C38BA2C7A3EC9001D5D0E /* PlanetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38B92C7A3EC9001D5D0E /* PlanetDetailViewModel.swift */; };
 		290C38BC2C7A3ED9001D5D0E /* PlanetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38BB2C7A3ED9001D5D0E /* PlanetDetailViewController.swift */; };
 		290C38BE2C7A3FDC001D5D0E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38BD2C7A3FDC001D5D0E /* Observable.swift */; };
+		290C38C12C7F786C001D5D0E /* HoroscopeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38C02C7F786C001D5D0E /* HoroscopeListViewModel.swift */; };
+		290C38C52C7F78A7001D5D0E /* HoroscopeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38C42C7F78A7001D5D0E /* HoroscopeListViewController.swift */; };
+		290C38C82C7F7AF7001D5D0E /* Horoscope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38C72C7F7AF7001D5D0E /* Horoscope.swift */; };
+		290C38CA2C7F7C0D001D5D0E /* HoroscopeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38C92C7F7C0D001D5D0E /* HoroscopeService.swift */; };
+		290C38CC2C7F7C70001D5D0E /* HoroscopeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38CB2C7F7C70001D5D0E /* HoroscopeDetailViewModel.swift */; };
+		290C38CE2C7F7CD7001D5D0E /* HoroscopeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38CD2C7F7CD7001D5D0E /* HoroscopeDetailViewController.swift */; };
+		290C38D22C8208D4001D5D0E /* MatchesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38D12C8208D4001D5D0E /* MatchesListViewController.swift */; };
+		290C38D42C8208E8001D5D0E /* MatchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38D32C8208E8001D5D0E /* MatchDetailViewController.swift */; };
+		290C38D82C820936001D5D0E /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38D72C820936001D5D0E /* Match.swift */; };
+		290C38DA2C820957001D5D0E /* MatchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38D92C820957001D5D0E /* MatchDetail.swift */; };
+		290C38DC2C820980001D5D0E /* MatchService .swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38DB2C820980001D5D0E /* MatchService .swift */; };
+		290C38DE2C8209A5001D5D0E /* MatchesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38DD2C8209A5001D5D0E /* MatchesListViewModel.swift */; };
+		290C38E02C8209BF001D5D0E /* MatchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38DF2C8209BF001D5D0E /* MatchDetailViewModel.swift */; };
+		290C38E32C82140A001D5D0E /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38E12C82140A001D5D0E /* MatchCell.swift */; };
+		290C38E42C82140A001D5D0E /* MatchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 290C38E22C82140A001D5D0E /* MatchCell.xib */; };
 		2998CE832C54162500DD844B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998CE822C54162500DD844B /* AppDelegate.swift */; };
 		2998CE852C54162500DD844B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998CE842C54162500DD844B /* SceneDelegate.swift */; };
 		2998CE8A2C54162500DD844B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2998CE892C54162500DD844B /* Base */; };
@@ -44,6 +59,21 @@
 		290C38B92C7A3EC9001D5D0E /* PlanetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDetailViewModel.swift; sourceTree = "<group>"; };
 		290C38BB2C7A3ED9001D5D0E /* PlanetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDetailViewController.swift; sourceTree = "<group>"; };
 		290C38BD2C7A3FDC001D5D0E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		290C38C02C7F786C001D5D0E /* HoroscopeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeListViewModel.swift; sourceTree = "<group>"; };
+		290C38C42C7F78A7001D5D0E /* HoroscopeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeListViewController.swift; sourceTree = "<group>"; };
+		290C38C72C7F7AF7001D5D0E /* Horoscope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Horoscope.swift; sourceTree = "<group>"; };
+		290C38C92C7F7C0D001D5D0E /* HoroscopeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeService.swift; sourceTree = "<group>"; };
+		290C38CB2C7F7C70001D5D0E /* HoroscopeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeDetailViewModel.swift; sourceTree = "<group>"; };
+		290C38CD2C7F7CD7001D5D0E /* HoroscopeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeDetailViewController.swift; sourceTree = "<group>"; };
+		290C38D12C8208D4001D5D0E /* MatchesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesListViewController.swift; sourceTree = "<group>"; };
+		290C38D32C8208E8001D5D0E /* MatchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailViewController.swift; sourceTree = "<group>"; };
+		290C38D72C820936001D5D0E /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		290C38D92C820957001D5D0E /* MatchDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetail.swift; sourceTree = "<group>"; };
+		290C38DB2C820980001D5D0E /* MatchService .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchService .swift"; sourceTree = "<group>"; };
+		290C38DD2C8209A5001D5D0E /* MatchesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesListViewModel.swift; sourceTree = "<group>"; };
+		290C38DF2C8209BF001D5D0E /* MatchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailViewModel.swift; sourceTree = "<group>"; };
+		290C38E12C82140A001D5D0E /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
+		290C38E22C82140A001D5D0E /* MatchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchCell.xib; sourceTree = "<group>"; };
 		2998CE7F2C54162500DD844B /* AstroTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AstroTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2998CE822C54162500DD844B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2998CE842C54162500DD844B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				290C38B22C7A3D0D001D5D0E /* PlanetService.swift */,
+				290C38C92C7F7C0D001D5D0E /* HoroscopeService.swift */,
+				290C38DB2C820980001D5D0E /* MatchService .swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -121,6 +153,79 @@
 				290C38B92C7A3EC9001D5D0E /* PlanetDetailViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		290C38BF2C7F7852001D5D0E /* Horoscope */ = {
+			isa = PBXGroup;
+			children = (
+				290C38C62C7F7AE0001D5D0E /* Model */,
+				290C38C32C7F7890001D5D0E /* View */,
+				290C38C22C7F7876001D5D0E /* ViewModel */,
+			);
+			path = Horoscope;
+			sourceTree = "<group>";
+		};
+		290C38C22C7F7876001D5D0E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				290C38C02C7F786C001D5D0E /* HoroscopeListViewModel.swift */,
+				290C38CB2C7F7C70001D5D0E /* HoroscopeDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		290C38C32C7F7890001D5D0E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				290C38C42C7F78A7001D5D0E /* HoroscopeListViewController.swift */,
+				290C38CD2C7F7CD7001D5D0E /* HoroscopeDetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		290C38C62C7F7AE0001D5D0E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				290C38C72C7F7AF7001D5D0E /* Horoscope.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		290C38CF2C8208B4001D5D0E /* Maches */ = {
+			isa = PBXGroup;
+			children = (
+				290C38D62C820914001D5D0E /* Model */,
+				290C38D52C8208ED001D5D0E /* ViewModel */,
+				290C38D02C8208C4001D5D0E /* View */,
+			);
+			path = Maches;
+			sourceTree = "<group>";
+		};
+		290C38D02C8208C4001D5D0E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				290C38D12C8208D4001D5D0E /* MatchesListViewController.swift */,
+				290C38D32C8208E8001D5D0E /* MatchDetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		290C38D52C8208ED001D5D0E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				290C38DD2C8209A5001D5D0E /* MatchesListViewModel.swift */,
+				290C38DF2C8209BF001D5D0E /* MatchDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		290C38D62C820914001D5D0E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				290C38D72C820936001D5D0E /* Match.swift */,
+				290C38D92C820957001D5D0E /* MatchDetail.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2998CE762C54162500DD844B = {
@@ -160,6 +265,8 @@
 		2998CE962C54EF5700DD844B /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				290C38CF2C8208B4001D5D0E /* Maches */,
+				290C38BF2C7F7852001D5D0E /* Horoscope */,
 				290C38AC2C7A3BD5001D5D0E /* Planet */,
 				2998CEBF2C5CE98C00DD844B /* Home */,
 				2998CE9E2C5A834600DD844B /* Login */,
@@ -238,6 +345,8 @@
 				2998CED12C5CEB7900DD844B /* PostTableViewCell.xib */,
 				2998CED62C5CF3F100DD844B /* MotivationCollectionViewCell.swift */,
 				2998CED72C5CF3F100DD844B /* MotivationCollectionViewCell.xib */,
+				290C38E12C82140A001D5D0E /* MatchCell.swift */,
+				290C38E22C82140A001D5D0E /* MatchCell.xib */,
 			);
 			path = ReusableView;
 			sourceTree = "<group>";
@@ -306,6 +415,7 @@
 				2998CE8C2C54162600DD844B /* Assets.xcassets in Resources */,
 				2998CE8F2C54162600DD844B /* Base in Resources */,
 				2998CE8A2C54162500DD844B /* Base in Resources */,
+				290C38E42C82140A001D5D0E /* MatchCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,21 +432,35 @@
 				290C38B62C7A3D68001D5D0E /* Planet.swift in Sources */,
 				2998CEC52C5CE9FB00DD844B /* HomeViewModel.swift in Sources */,
 				2998CECD2C5CEB3300DD844B /* StoryCollectionViewCell.swift in Sources */,
+				290C38DA2C820957001D5D0E /* MatchDetail.swift in Sources */,
+				290C38D22C8208D4001D5D0E /* MatchesListViewController.swift in Sources */,
+				290C38CC2C7F7C70001D5D0E /* HoroscopeDetailViewModel.swift in Sources */,
 				2998CE982C54EF7400DD844B /* LoginController.swift in Sources */,
 				290C38AE2C7A3BE6001D5D0E /* PlanetViewController.swift in Sources */,
 				2998CEA32C5A839000DD844B /* RegisterViewModel.swift in Sources */,
+				290C38DC2C820980001D5D0E /* MatchService .swift in Sources */,
 				2998CFC22C76008B00DD844B /* AppCoordinator.swift in Sources */,
+				290C38D42C8208E8001D5D0E /* MatchDetailViewController.swift in Sources */,
+				290C38E02C8209BF001D5D0E /* MatchDetailViewModel.swift in Sources */,
 				290C38BE2C7A3FDC001D5D0E /* Observable.swift in Sources */,
+				290C38CA2C7F7C0D001D5D0E /* HoroscopeService.swift in Sources */,
 				2998CEA12C5A838000DD844B /* LoginViewModel.swift in Sources */,
 				2998CEC82C5CEA2E00DD844B /* HomeViewController.swift in Sources */,
+				290C38DE2C8209A5001D5D0E /* MatchesListViewModel.swift in Sources */,
 				2998CEC22C5CE9C900DD844B /* Struct.swift in Sources */,
 				290C38B32C7A3D0D001D5D0E /* PlanetService.swift in Sources */,
 				2998CE832C54162500DD844B /* AppDelegate.swift in Sources */,
 				290C38BA2C7A3EC9001D5D0E /* PlanetDetailViewModel.swift in Sources */,
+				290C38E32C82140A001D5D0E /* MatchCell.swift in Sources */,
 				2998CE852C54162500DD844B /* SceneDelegate.swift in Sources */,
 				2998CE9D2C5A7EEF00DD844B /* RegisterStruct.swift in Sources */,
+				290C38D82C820936001D5D0E /* Match.swift in Sources */,
+				290C38C12C7F786C001D5D0E /* HoroscopeListViewModel.swift in Sources */,
+				290C38C82C7F7AF7001D5D0E /* Horoscope.swift in Sources */,
 				290C38BC2C7A3ED9001D5D0E /* PlanetDetailViewController.swift in Sources */,
 				2998CED32C5CEB7900DD844B /* PostTableViewCell.swift in Sources */,
+				290C38CE2C7F7CD7001D5D0E /* HoroscopeDetailViewController.swift in Sources */,
+				290C38C52C7F78A7001D5D0E /* HoroscopeListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
