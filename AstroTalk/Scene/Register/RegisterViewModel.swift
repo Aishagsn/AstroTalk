@@ -76,10 +76,10 @@ class RegisterViewModel {
             switch response.statusCode {
             case 200:
                 self?.onSuccess?()
-                self?.coordinator?.start() // Navigate to another screen or handle successful registration
+//                self?.coordinator?.start() // Navigate to another screen or handle successful registration
             case 201:
                 self?.onSuccess?()
-                self?.coordinator?.start()
+//                self?.coordinator?.start()                
             case 400:
                 self?.onError?("Bad Request: Please check your input data.")
             case 401:

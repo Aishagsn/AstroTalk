@@ -40,15 +40,11 @@ class HoroscopeListViewModel {
         }
     }
 
-    // Example method to return the number of horoscopes
     var numberOfHoroscopes: Int {
-        // Example implementation
         return horoscope == nil ? 0 : 1
     }
-    
-    // Example method to get horoscope at a specific index
+   
     func horoscope(at index: Int) -> Horoscope {
-        // Example implementation
         return horoscope!
     }
 }

@@ -12,6 +12,12 @@ class LoginViewModel {
     var onError: ((String) -> Void)?
     var onSuccess: (() -> Void)?
    
+    var coordinator: AppCoordinator
+    
+    init(coordinator: AppCoordinator) {
+        self.coordinator = coordinator
+    }
+    
     func loginUser(username: String, password: String) {
         guard let url = URL(string: "http://35.223.201.116:8088/api/auth/login") else {
             onError?("Invalid URL")
@@ -48,8 +54,10 @@ class LoginViewModel {
                 // Store the JWT token securely (e.g., in Keychain)
                 print("JWT Token: \(token)")
                 
+                UserDefaults.standard.setValue(token, forKey: "accessToken")
                 // After successful login, call the updateUser function
-                self?.updateUser(with: token)
+//                self?.updateUser(with: token)
+                self?.navigateToHome()
             }
         }
 
@@ -57,7 +65,7 @@ class LoginViewModel {
     }
     
     func updateUser(with token: String) {
-        guard let url = URL(string: "http://localhost:8088/api/user/updateUser") else {
+        guard let url = URL(string: "http://35.223.201.116:8088/api/user/updateUser") else {
             onError?("Invalid URL")
             return
         }
@@ -90,7 +98,7 @@ class LoginViewModel {
             }
 
             // Successfully updated user, proceed with further actions
-            self?.onSuccess?()
+//            self?.onSuccess?()
             self?.navigateToHome()
         }
 
@@ -103,13 +111,14 @@ class LoginViewModel {
             if let sceneDelegate = UIApplication.shared.connectedScenes
                 .first?.delegate as? SceneDelegate {
                 // Instantiate the HomeViewController
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
-                    // Set the root view controller to HomeViewController
-                    let navController = UINavigationController(rootViewController: homeVC)
-                    sceneDelegate.window?.rootViewController = navController
-                    sceneDelegate.window?.makeKeyAndVisible()
-                }
+                sceneDelegate.changeToTabbar()
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                if let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+//                    // Set the root view controller to HomeViewController
+//                    let navController = UINavigationController(rootViewController: homeVC)
+//                    sceneDelegate.window?.rootViewController = navController
+//                    sceneDelegate.window?.makeKeyAndVisible()
+//                }
             }
         }
     }

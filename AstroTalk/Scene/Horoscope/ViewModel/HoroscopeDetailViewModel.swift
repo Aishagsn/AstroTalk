@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 class HoroscopeDetailViewModel {
     private let horoscope: Horoscope
     

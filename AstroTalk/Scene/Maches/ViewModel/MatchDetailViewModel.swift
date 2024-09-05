@@ -8,31 +8,48 @@
 import Foundation
 
 class MatchDetailViewModel {
-    private let matchService: MatchService
-    var matchDetail: MatchDetail?
-    private var isFollowing: Bool = false
-
-    init(matchService: MatchService) {
-        self.matchService = matchService
-    }
-
-    func fetchMatchDetail(for name: String, completion: @escaping () -> Void) {
-        matchService.fetchMatchDetail(for: name) { [weak self] matchDetail in
-            self?.matchDetail = matchDetail
-            completion()
+    private let matchService = MatchService()
+    var matchDetail: MatchDetail
+    private(set) var isFollowing: Bool = false
+    
+    init(matchDetail: MatchDetail) {
+            self.matchDetail = matchDetail
         }
-    }
-    func followUser() {
-            // Mevcut durumun tersine çevirilmesi (Takip edildiyse bırak, edilmediyse takip et)
-            isFollowing.toggle()
-            
-            if isFollowing {
-                print("\(matchDetail?.name ?? "") takip edildi.")
-                // Burada API isteği veya başka bir takip işlemi yapılabilir.
-            } else {
-                print("\(matchDetail?.name ?? "") takibi bırakıldı.")
-                // Burada API isteği veya takibi bırakma işlemi yapılabilir.
+
+
+    func fetchMatchDetail(for name: String, completion: @escaping (MatchDetail?, String?) -> Void) {
+            matchService.fetchMatchDetail(for: name) { [weak self] matchDetail, errorMessage in
+                if let error = errorMessage {
+                    completion(nil, error)
+                } else if let matchDetail = matchDetail {
+                    self?.matchDetail = matchDetail
+                    completion(matchDetail, nil)
+                } else {
+                    completion(nil, "Unknown error occurred.")
+                }
             }
         }
-}
-
+    func followUser(completion: @escaping (Bool, Error?) -> Void) {
+           isFollowing.toggle()
+           
+           let action = isFollowing ? "followed" : "unfollowed"
+           let message = "\(matchDetail.name) has been \(action)."
+           
+           // Simulate network request or action
+           DispatchQueue.global().async {
+               sleep(1) // Simulate network delay
+               
+               DispatchQueue.main.async {
+                   print(message)
+                   completion(true, nil) // Notify success
+               }
+           }
+        let success = true // Simulate success/failure
+                if success {
+                    completion(true, nil)
+                } else {
+                    let errorMessage = "Failed to follow user." // Replace with actual error message
+                    completion(false, errorMessage as? Error)
+                }
+       }
+   }

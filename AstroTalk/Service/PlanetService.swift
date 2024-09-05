@@ -8,37 +8,23 @@
 import Foundation
 
 class PlanetService {
-    let baseURL = "http://localhost:5000/api/Planets/1"
-    
     func fetchPlanets(completion: @escaping (Result<[Planet], Error>) -> Void) {
-        guard let url = URL(string: baseURL) else {
-            completion(.failure(NetworkError.invalidURL))
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        NetworkManager.request(model: [Planet].self,
+                                     endpoint: "api/Planets/1",
+                                     method: .get) { planets, error in
             if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(NetworkError.noData))
-                return
-            }
-            
-            do {
-                let planets = try JSONDecoder().decode([Planet].self, from: data)
+                completion(.failure(NetworkError.customError(error)))
+            } else if let planets = planets {
                 completion(.success(planets))
-            } catch {
-                completion(.failure(error))
+            } else {
+                completion(.failure(NetworkError.noData))
             }
         }
-        task.resume()
     }
 }
 
 enum NetworkError: Error {
     case invalidURL
     case noData
+    case customError(String)
 }

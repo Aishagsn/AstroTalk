@@ -24,25 +24,35 @@ class HomeViewModel {
       }
     
     func fetchData() {
-        // Mock API request to fetch stories, posts, and motivation messages data
-        let mockAPIURL = "https://yourmockapi.com/api/data"
-        fetchMockData(from: mockAPIURL) { [weak self] data in
-            // Process the data and update the stories, posts, and motivation messages
-            // self?.stories = fetchedStories
-            // self?.posts = fetchedPosts
-            // self?.motivationMessages = fetchedMotivationMessages
-            self?.onStoriesFetched?()
-            self?.onPostsFetched?()
-            self?.onMotivationMessagesFetched?()
+        let storiesEndpoint = "stories"
+                let postsEndpoint = "posts"
+                let motivationMessagesEndpoint = "motivationMessages"
+        
+                NetworkManager.request(model: [Story].self, endpoint: storiesEndpoint) { [weak self] (stories, error) in
+                    if let stories = stories {
+                        self?.stories = stories
+                        self?.onStoriesFetched?()
+                    } else if let error = error {
+                        print("Error fetching stories: \(error)")
+                    }
+                }
+          
+                NetworkManager.request(model: [Post].self, endpoint: postsEndpoint) { [weak self] (posts, error) in
+                    if let posts = posts {
+                        self?.posts = posts
+                        self?.onPostsFetched?()
+                    } else if let error = error {
+                        print("Error fetching posts: \(error)")
+                    }
+                }
+               
+                NetworkManager.request(model: [MotivationMessage].self, endpoint: motivationMessagesEndpoint) { [weak self] (messages, error) in
+                    if let messages = messages {
+                        self?.motivationMessages = messages
+                        self?.onMotivationMessagesFetched?()
+                    } else if let error = error {
+                        print("Error fetching motivation messages: \(error)")
+                    }
+                }
+            }
         }
-    }
-    
-    private func fetchMockData(from url: String, completion: @escaping (Data?) -> Void) {
-        // Implement mock API request
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            // Simulate a network response delay
-            // Call completion with mock data
-            completion(nil) // Replace with actual mock data
-        }
-    }
-}

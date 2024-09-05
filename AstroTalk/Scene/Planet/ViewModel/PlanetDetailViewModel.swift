@@ -13,16 +13,16 @@ class PlanetDetailViewModel {
     init(planet: Planet) {
         self.planet = Observable(planet)
     }
-    
     func loadImage(completion: @escaping (Data?) -> Void) {
-        guard let url = URL(string: planet.value.imageUrl) else {
-            completion(nil)
-            return
+            let imageUrl = planet.value.imageUrl
+            
+            NetworkManager.request(model: Data.self, endpoint: imageUrl, method: .get) { data, error in
+                if let error = error {
+                    print("Failed to load image: \(error)")
+                    completion(nil)
+                    return
+                }
+                completion(data)
+            }
         }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, _, _ in
-            completion(data)
-        }
-        task.resume()
     }
-}

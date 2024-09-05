@@ -35,16 +35,26 @@ extension MatchesListViewController: UICollectionViewDelegate, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MatchCell", for: indexPath) as! MatchCell
-        if let match = viewModel?.getMatch(at: indexPath.row) {
-            cell.configure(with: match)
-        }
-        return cell
-    }
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MatchCell", for: indexPath) as! MatchCell
+//        if let match = viewModel?.getMatch(at: indexPath.row) {
+//            cell.configure(with: match)
+//        }
+//        return cell
+//    }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MatchCell", for: indexPath) as? MatchCell,
+                      let match = viewModel?.getMatch(at: indexPath.row) else {
+                    return UICollectionViewCell()
+                }
+                cell.configure(with: match)
+                return cell
+            }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let match = viewModel?.getMatch(at: indexPath.row) {
-            coordinator?.showMatchDetail(for: match)
-        }
+//        if let match = viewModel?.getMatch(at: indexPath.row) {
+//            coordinator?.showMatchDetail(for: match)
+//        }
+        guard let match = viewModel?.getMatch(at: indexPath.row) else { return }
+               coordinator?.showMatchDetail(for: match)
+           }
     }
-}
+

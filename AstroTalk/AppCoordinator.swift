@@ -7,23 +7,13 @@
 
 import Foundation
 import UIKit
+
 class AppCoordinator {
     var navigationController: UINavigationController
-    private let matchService: MatchService
+    
     // Ensure this initializer exists in AppCoordinator
-    init(navigationController: UINavigationController, matchService: MatchService) {
-            self.navigationController = navigationController
-            self.matchService = matchService
-        }
-    func start() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginController") as? LoginController else {
-            fatalError("LoginController not found in storyboard.")
-        }
-        let loginViewModel = LoginViewModel()
-        loginVC.viewModel = loginViewModel
-        // Set the root view controller of the navigation controller to the login view controller
-        navigationController.setViewControllers([loginVC], animated: false)
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
     
     func navigateToRegister() {
@@ -31,9 +21,11 @@ class AppCoordinator {
         guard let registerVC = storyboard.instantiateViewController(withIdentifier: "RegisterController") as? RegisterController else {
             fatalError("RegisterController not found in storyboard.")
         }
-        let RegisterViewModel = RegisterViewModel()
-        registerVC.viewModel = RegisterViewModel
-        navigationController.setViewControllers([registerVC], animated: false)
+        
+//        let registerViewModel = RegisterViewModel(coordinator: self)
+        registerVC.viewModel = .init(coordinator: self)
+        navigationController.show(registerVC, sender: nil)
+        //        navigationController.setViewControllers([registerVC], animated: false)
     }
     
     func navigateToHome() {
@@ -72,24 +64,24 @@ class AppCoordinator {
         navigationController.pushViewController(horoscopeVC, animated: true)
     }
     func showMatchList() {
-           let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-           let matchesListVC = mainStoryboard.instantiateViewController(withIdentifier: "MatchesListViewController") as! MatchesListViewController
-           let viewModel = MatchesListViewModel(matchService: matchService)
-           matchesListVC.viewModel = viewModel
-           matchesListVC.coordinator = self
-           navigationController.pushViewController(matchesListVC, animated: true)
-       }
-
-       func showMatchDetail(for match: Match) {
-           let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-           let matchDetailVC = mainStoryboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
-           let detailViewModel = MatchDetailViewModel(matchService: matchService)
-           detailViewModel.fetchMatchDetail(for: match.name) {
-               DispatchQueue.main.async {
-                   matchDetailVC.viewModel = detailViewModel
-                   self.navigationController.pushViewController(matchDetailVC, animated: true)
-               }
-           }
-       }
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let matchesListVC = mainStoryboard.instantiateViewController(withIdentifier: "MatchesListViewController") as! MatchesListViewController
+        let viewModel = MatchesListViewModel()
+        matchesListVC.viewModel = viewModel
+        matchesListVC.coordinator = self
+        navigationController.pushViewController(matchesListVC, animated: true)
+    }
+    
+    func showMatchDetail(for match: Match) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let matchDetailVC = mainStoryboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
+        let detailViewModel = MatchDetailViewModel()
+        detailViewModel.fetchMatchDetail(for: match.name) {_,_ in 
+            DispatchQueue.main.async {
+                matchDetailVC.viewModel = detailViewModel
+                self.navigationController.pushViewController(matchDetailVC, animated: true)
+            }
+        }
+    }
     
 }

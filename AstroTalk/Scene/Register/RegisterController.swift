@@ -21,11 +21,13 @@ class RegisterController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                    bindViewModel()
+//                    bindViewModel()
       
     }
     
     @IBAction func registerTappedButton(_ sender: Any) {
+        bindViewModel()
+        
         //            guard let name = nameTextField.text, !name.isEmpty,
         //                  let surname = surnameTextField.text, !surname.isEmpty,
         //                  let username = usernameTextField.text, !username.isEmpty,
@@ -55,8 +57,9 @@ class RegisterController: UIViewController {
            
         )
     }
+    
     @IBAction func loginTappedButton(_ sender: Any) {
-        viewModel.coordinator?.start()
+        navigationController?.popViewController(animated: true)
     }
     
     private func bindViewModel() {
@@ -73,7 +76,8 @@ class RegisterController: UIViewController {
             DispatchQueue.main.async {
                 // Handle successful registration
                 // Example: Navigate to another screen
-                self?.viewModel.coordinator?.start()
+//                self?.viewModel.coordinator?.start()
+                self?.navigationController?.popViewController(animated: true)
             }
         }
     }

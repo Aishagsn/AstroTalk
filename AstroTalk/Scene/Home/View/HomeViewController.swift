@@ -8,13 +8,13 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    
-
     @IBOutlet weak var storiesCollectionView: UICollectionView!
     @IBOutlet weak var postsTableView: UITableView!
     @IBOutlet weak var motivationCollectionView: UICollectionView!
     
      var viewModel = HomeViewModel()
+    var userList = [User]()
+    var filterUser = [User]()
 //    var coordinator : AppCoordinator
 //    // Custom initializer
 //      init(viewModel: HomeViewModel, coordinator: AppCoordinator) {
@@ -36,9 +36,6 @@ class HomeViewController: UIViewController {
     }
     
     private func configureUI() {
-//        greetingLabel.text = "Welcome, Aisha"
-//        profileImageView.image = UIImage(named: "defaultProfileImage") // Placeholder image
-        
         storiesCollectionView.delegate = self
         storiesCollectionView.dataSource = self
         storiesCollectionView.register(UINib(nibName: "StoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "StoryCell")
@@ -108,5 +105,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let post = viewModel.posts[indexPath.row]
         cell.configure(with: post)
         return cell
+    }
+}
+extension HomeViewController : UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.filterUser = self.userList.filter { user in
+            return user.name.lowercased().contains(searchText.lowercased()) || searchText.isEmpty
+        }
+        self.storiesCollectionView.reloadData()
+        self.motivationCollectionView.reloadData()
+        self.postsTableView.reloadData()
     }
 }

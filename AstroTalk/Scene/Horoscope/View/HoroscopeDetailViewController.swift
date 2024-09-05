@@ -6,18 +6,36 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HoroscopeDetailViewController: UIViewController {
   
     
+    @IBOutlet weak var informationLabel: UILabel!
+    @IBOutlet weak var monthlyLabel: UIButton!
+    @IBOutlet weak var weeklyLabel: UIButton!
+    @IBOutlet weak var dailyLabel: UIButton!
+    @IBOutlet weak var horoscopeImage: UIImageView!
     var viewModel: HoroscopeDetailViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-       
+        setupUI()
     }
-    
+    private func setupUI() {
+           self.title = viewModel.name
+           
+           informationLabel.text = "\(viewModel.name) - \(viewModel.dateRange)"
+           dailyLabel.setTitle(viewModel.dailyHoroscope, for: .normal)
+           weeklyLabel.setTitle(viewModel.weeklyHoroscope, for: .normal)
+           monthlyLabel.setTitle(viewModel.monthlyHoroscope, for: .normal)
+           
+           if let planetImageURL = URL(string: viewModel.planet) {
+               horoscopeImage.kf.setImage(with: planetImageURL)
+           } else {
+               horoscopeImage.image = UIImage(named: "defaultPlanetImage")
+           }
+       }
    
     
     

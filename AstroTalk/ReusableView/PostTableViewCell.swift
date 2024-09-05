@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PostTableViewCell: UITableViewCell {
     
@@ -14,12 +15,18 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var postTimeLabel: UILabel!
     
     override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
+            super.awakeFromNib()
+        }
+        
     func configure(with post: Post) {
         postContentLabel.text = post.content
         postTimeLabel.text = post.timeAgo
-        postImageView.image = UIImage(named: post.imageName)
+        
+        if let imageUrl = URL(string: post.imageName) {
+            postImageView.kf.setImage(with: imageUrl)
+        } else {
+            postImageView.image = UIImage(named: "placeholder")
+        }
     }
-}
+
+    }

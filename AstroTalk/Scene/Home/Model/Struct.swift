@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct Story {
+struct Story: Codable {
     let profileImageName: String
     let zodiacSignImageName: String
 }
 
-struct Post {
+struct Post: Codable  {
     let content: String
     let timeAgo: String
     let imageName: String
 }
 
-struct MotivationMessage {
+struct MotivationMessage: Codable  {
     let imageName: String
 }
 

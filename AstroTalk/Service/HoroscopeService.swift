@@ -6,21 +6,20 @@
 //
 
 import Foundation
-class HoroscopeService {
-    func fetchHoroscope(for sign: String, period: String, completion: @escaping (Horoscope) -> Void) {
-        let urlString = "http://fakeapi.com/horoscope/\(period)?sign=\(sign)"
-        guard let url = URL(string: urlString) else { return }
+import Alamofire
 
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                let decoder = JSONDecoder()
-                do {
-                    let horoscope = try decoder.decode(Horoscope.self, from: data)
-                    completion(horoscope)
-                } catch {
-                    print("Failed to decode JSON")
-                }
+class HoroscopeService {
+    func fetchHoroscope(for sign: String, period: String, completion: @escaping (Horoscope?) -> Void) {
+        let endpoint = "horoscope/\(period)"
+        let parameters: Parameters = ["sign": sign]
+        
+        NetworkManager.request(model: Horoscope.self, endpoint: endpoint, method: .get, parameters: parameters) { (response, error) in
+            if let error = error {
+                print("Error fetching horoscope: \(error)")
+                completion(nil)
+            } else if let horoscope = response {
+                completion(horoscope)
             }
-        }.resume()
+        }
     }
 }

@@ -16,7 +16,7 @@ class HoroscopeListViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bindViewModel()
-        fetchHoroscopes() // Call the method to fetch horoscopes
+        fetchHoroscopes()
     }
     
     private func setupUI() {
@@ -32,9 +32,7 @@ class HoroscopeListViewController: UIViewController {
     }
     
     private func fetchHoroscopes() {
-        // Example call to fetch horoscope; adjust parameters as needed
         viewModel.fetchHoroscope(for: "Aries", period: "daily") {
-            // Handle completion if needed
         }
     }
 }

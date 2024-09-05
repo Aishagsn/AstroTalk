@@ -6,39 +6,30 @@
 //
 
 import Foundation
+import Alamofire
 
 class MatchService {
-    func fetchMatches(completion: @escaping ([Match]) -> Void) {
-        let urlString = "http://fakeapi.com/matches"
-        guard let url = URL(string: urlString) else { return }
-
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                let decoder = JSONDecoder()
-                do {
-                    let matches = try decoder.decode([Match].self, from: data)
-                    completion(matches)
-                } catch {
-                    print("Failed to decode JSON")
-                }
+    
+    func fetchMatches(completion: @escaping ([Match]?, String?) -> Void) {
+        NetworkManager.request(model: [Match].self, endpoint: "matches") { response, error in
+            if let error = error {
+                print("Failed to fetch matches: \(error)")
+                completion(nil, error)
+            } else if let matches = response {
+                completion(matches, nil)
             }
-        }.resume()
+        }
     }
 
-    func fetchMatchDetail(for name: String, completion: @escaping (MatchDetail) -> Void) {
-        let urlString = "http://fakeapi.com/matches/\(name)"
-        guard let url = URL(string: urlString) else { return }
-
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                let decoder = JSONDecoder()
-                do {
-                    let matchDetail = try decoder.decode(MatchDetail.self, from: data)
-                    completion(matchDetail)
-                } catch {
-                    print("Failed to decode JSON")
-                }
+    func fetchMatchDetail(for name: String, completion: @escaping (MatchDetail?, String?) -> Void) {
+        let endpoint = "matches/\(name)"
+        NetworkManager.request(model: MatchDetail.self, endpoint: endpoint) { response, error in
+            if let error = error {
+                print("Failed to fetch match detail: \(error)")
+                completion(nil, error)
+            } else if let matchDetail = response {
+                completion(matchDetail, nil)
             }
-        }.resume()
+        }
     }
 }

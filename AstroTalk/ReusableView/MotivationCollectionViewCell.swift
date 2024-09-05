@@ -6,13 +6,18 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MotivationCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var motivationImageView: UIImageView!
     
     func configure(with message: MotivationMessage) {
-        motivationImageView.image = UIImage(named: message.imageName)
+            if let image = UIImage(named: message.imageName) {
+                motivationImageView.image = image
+            } else {
+                motivationImageView.image = UIImage(named: "placeholderImage")
+            }
+        }
     }
-}
 

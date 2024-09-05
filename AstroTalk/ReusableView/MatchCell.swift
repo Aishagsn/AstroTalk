@@ -15,24 +15,19 @@ class MatchCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Customize your cell UI here (e.g., round the image view)
-        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-        profileImageView.clipsToBounds = true
-    }
-    
-    func configure(with match: Match) {
-        nameLabel.text = match.name
-        ageLabel.text = "\(match.age)"
         
-        // Load image asynchronously
-        if let url = URL(string: match.imageUrl) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data {
-                    DispatchQueue.main.async {
-                        self.profileImageView.image = UIImage(data: data)
-                    }
-                }
-            }.resume()
-        }
-    }
-}
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+               profileImageView.clipsToBounds = true
+           }
+           
+           func configure(with match: Match) {
+               nameLabel.text = match.name
+               ageLabel.text = "\(match.age)"
+              
+               if let url = URL(string: match.imageUrl) {
+                   profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholderImage"))
+               } else {
+                   profileImageView.image = UIImage(named: "placeholderImage")
+               }
+           }
+       }
