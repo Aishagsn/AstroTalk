@@ -7,10 +7,6 @@
 
 import Foundation
 struct Horoscope: Codable {
-    let name: String
-    let dateRange: String
-    let planet: String
-    let daily: String
-    let weekly: String
-    let monthly: String
+    let horoscopeName: String
+    let image: String
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29069F532C8A4BE90067C136 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 29069F522C8A4BE90067C136 /* Alamofire */; };
+		29069F582C8B69AD0067C136 /* PlanetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29069F572C8B69AD0067C136 /* PlanetTableViewCell.xib */; };
+		29069F592C8B69AD0067C136 /* PlanetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29069F562C8B69AD0067C136 /* PlanetTableViewCell.swift */; };
+		29069F5B2C8BB7340067C136 /* HoroscopeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29069F5A2C8BB7340067C136 /* HoroscopeDetail.swift */; };
 		290C38AE2C7A3BE6001D5D0E /* PlanetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38AD2C7A3BE6001D5D0E /* PlanetViewController.swift */; };
 		290C38B02C7A3BF6001D5D0E /* PlanetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38AF2C7A3BF6001D5D0E /* PlanetViewModel.swift */; };
 		290C38B32C7A3D0D001D5D0E /* PlanetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38B22C7A3D0D001D5D0E /* PlanetService.swift */; };
@@ -30,8 +34,6 @@
 		290C38E32C82140A001D5D0E /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38E12C82140A001D5D0E /* MatchCell.swift */; };
 		290C38E42C82140A001D5D0E /* MatchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 290C38E22C82140A001D5D0E /* MatchCell.xib */; };
 		2927D5842C8A348A00977266 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2927D5832C8A348A00977266 /* NetworkManager.swift */; };
-		2927D5872C8A34AA00977266 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2927D5862C8A34AA00977266 /* Alamofire */; };
-		2927D5892C8A34AA00977266 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 2927D5882C8A34AA00977266 /* AlamofireDynamic */; };
 		2927D58B2C8A34C300977266 /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2927D58A2C8A34C300977266 /* NetworkConstant.swift */; };
 		2927D58E2C8A372700977266 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2927D58D2C8A372700977266 /* Kingfisher */; };
 		2998CE832C54162500DD844B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998CE822C54162500DD844B /* AppDelegate.swift */; };
@@ -57,6 +59,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29069F562C8B69AD0067C136 /* PlanetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetTableViewCell.swift; sourceTree = "<group>"; };
+		29069F572C8B69AD0067C136 /* PlanetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanetTableViewCell.xib; sourceTree = "<group>"; };
+		29069F5A2C8BB7340067C136 /* HoroscopeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeDetail.swift; sourceTree = "<group>"; };
 		290C38AD2C7A3BE6001D5D0E /* PlanetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewController.swift; sourceTree = "<group>"; };
 		290C38AF2C7A3BF6001D5D0E /* PlanetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewModel.swift; sourceTree = "<group>"; };
 		290C38B22C7A3D0D001D5D0E /* PlanetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetService.swift; sourceTree = "<group>"; };
@@ -111,8 +116,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2927D58E2C8A372700977266 /* Kingfisher in Frameworks */,
-				2927D5872C8A34AA00977266 /* Alamofire in Frameworks */,
-				2927D5892C8A34AA00977266 /* AlamofireDynamic in Frameworks */,
+				29069F532C8A4BE90067C136 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				290C38C72C7F7AF7001D5D0E /* Horoscope.swift */,
+				29069F5A2C8BB7340067C136 /* HoroscopeDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -367,6 +372,8 @@
 				2998CED72C5CF3F100DD844B /* MotivationCollectionViewCell.xib */,
 				290C38E12C82140A001D5D0E /* MatchCell.swift */,
 				290C38E22C82140A001D5D0E /* MatchCell.xib */,
+				29069F562C8B69AD0067C136 /* PlanetTableViewCell.swift */,
+				29069F572C8B69AD0067C136 /* PlanetTableViewCell.xib */,
 			);
 			path = ReusableView;
 			sourceTree = "<group>";
@@ -388,9 +395,8 @@
 			);
 			name = AstroTalk;
 			packageProductDependencies = (
-				2927D5862C8A34AA00977266 /* Alamofire */,
-				2927D5882C8A34AA00977266 /* AlamofireDynamic */,
 				2927D58D2C8A372700977266 /* Kingfisher */,
+				29069F522C8A4BE90067C136 /* Alamofire */,
 			);
 			productName = AstroTalk;
 			productReference = 2998CE7F2C54162500DD844B /* AstroTalk.app */;
@@ -421,8 +427,8 @@
 			);
 			mainGroup = 2998CE762C54162500DD844B;
 			packageReferences = (
-				2927D5852C8A34AA00977266 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				2927D58C2C8A372600977266 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				29069F512C8A4BE90067C136 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 2998CE802C54162500DD844B /* Products */;
 			projectDirPath = "";
@@ -445,6 +451,7 @@
 				2998CE8F2C54162600DD844B /* Base in Resources */,
 				2998CE8A2C54162500DD844B /* Base in Resources */,
 				290C38E42C82140A001D5D0E /* MatchCell.xib in Resources */,
+				29069F582C8B69AD0067C136 /* PlanetTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,10 +493,12 @@
 				2998CE9D2C5A7EEF00DD844B /* RegisterStruct.swift in Sources */,
 				290C38D82C820936001D5D0E /* Match.swift in Sources */,
 				290C38C12C7F786C001D5D0E /* HoroscopeListViewModel.swift in Sources */,
+				29069F5B2C8BB7340067C136 /* HoroscopeDetail.swift in Sources */,
 				290C38C82C7F7AF7001D5D0E /* Horoscope.swift in Sources */,
 				290C38BC2C7A3ED9001D5D0E /* PlanetDetailViewController.swift in Sources */,
 				2998CED32C5CEB7900DD844B /* PostTableViewCell.swift in Sources */,
 				290C38CE2C7F7CD7001D5D0E /* HoroscopeDetailViewController.swift in Sources */,
+				29069F592C8B69AD0067C136 /* PlanetTableViewCell.swift in Sources */,
 				290C38C52C7F78A7001D5D0E /* HoroscopeListViewController.swift in Sources */,
 				2927D58B2C8A34C300977266 /* NetworkConstant.swift in Sources */,
 			);
@@ -716,7 +725,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2927D5852C8A34AA00977266 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		29069F512C8A4BE90067C136 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -735,15 +744,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2927D5862C8A34AA00977266 /* Alamofire */ = {
+		29069F522C8A4BE90067C136 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2927D5852C8A34AA00977266 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 29069F512C8A4BE90067C136 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		2927D5882C8A34AA00977266 /* AlamofireDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2927D5852C8A34AA00977266 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
 		};
 		2927D58D2C8A372700977266 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

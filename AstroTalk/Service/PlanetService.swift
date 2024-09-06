@@ -10,7 +10,7 @@ import Foundation
 class PlanetService {
     func fetchPlanets(completion: @escaping (Result<[Planet], Error>) -> Void) {
         NetworkManager.request(model: [Planet].self,
-                                     endpoint: "api/Planets/1",
+                                     endpoint: "api/planet",
                                      method: .get) { planets, error in
             if let error = error {
                 completion(.failure(NetworkError.customError(error)))

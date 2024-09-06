@@ -23,12 +23,12 @@ class HoroscopeDetailViewController: UIViewController {
         setupUI()
     }
     private func setupUI() {
-           self.title = viewModel.name
+        self.title = viewModel.features
            
-           informationLabel.text = "\(viewModel.name) - \(viewModel.dateRange)"
-           dailyLabel.setTitle(viewModel.dailyHoroscope, for: .normal)
-           weeklyLabel.setTitle(viewModel.weeklyHoroscope, for: .normal)
-           monthlyLabel.setTitle(viewModel.monthlyHoroscope, for: .normal)
+           informationLabel.text = "\(viewModel.planet) - \(viewModel.features)"
+           dailyLabel.setTitle(viewModel.type, for: .normal)
+           weeklyLabel.setTitle(viewModel.type, for: .normal)
+           monthlyLabel.setTitle(viewModel.type, for: .normal)
            
            if let planetImageURL = URL(string: viewModel.planet) {
                horoscopeImage.kf.setImage(with: planetImageURL)

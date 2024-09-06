@@ -8,8 +8,9 @@
 import Foundation
 
 struct Planet: Codable {
-    let id: String
+    let image: String
     let name: String
-    let description: String
-    let imageUrl: String
+    let gravitation: String
+    let area: String
+    let about: String
 }

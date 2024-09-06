@@ -21,7 +21,7 @@ class PlanetDetailViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.planet.bind { [weak self] planet in
-            self?.descriptionLabel.text = planet.description
+            self?.descriptionLabel.text = planet.about
         }
     }
     

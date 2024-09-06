@@ -42,22 +42,26 @@ class AppCoordinator {
     }
     func showPlanets() {
         let planetService = PlanetService()
-        let planetViewModel = PlanetViewModel(coordinator: self, planetService: planetService)
+        let planetViewModel = PlanetViewModel()
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let planetVC = mainStoryboard.instantiateViewController(withIdentifier: "PlanetViewController") as! PlanetViewController
+        
+        
         navigationController.pushViewController(planetVC, animated: true)
     }
     
     func showPlanetDetail(for planet: Planet) {
         let detailViewModel = PlanetDetailViewModel(planet: planet)
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
         let detailVC = mainStoryboard.instantiateViewController(withIdentifier: "PlanetDetailViewController") as! PlanetDetailViewController
+        detailVC.viewModel = detailViewModel
         navigationController.pushViewController(detailVC, animated: true)
     }
     func showHoroscopeList() {
         let horoscopeService = HoroscopeService()
-        let viewModel = HoroscopeListViewModel(horoscopeService: horoscopeService)
+        let viewModel = HoroscopeListViewModel()
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let horoscopeVC = mainStoryboard.instantiateViewController(withIdentifier: "HoroscopeListViewController") as! HoroscopeListViewController
         horoscopeVC.viewModel = viewModel
@@ -76,7 +80,7 @@ class AppCoordinator {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let matchDetailVC = mainStoryboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
         let detailViewModel = MatchDetailViewModel()
-        detailViewModel.fetchMatchDetail(for: match.name) {_,_ in 
+        detailViewModel.fetchMatchDetail(for: match.name) {_,_ in
             DispatchQueue.main.async {
                 matchDetailVC.viewModel = detailViewModel
                 self.navigationController.pushViewController(matchDetailVC, animated: true)

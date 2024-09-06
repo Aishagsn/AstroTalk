@@ -18,7 +18,7 @@ class MatchDetailViewController: UIViewController {
     @IBOutlet weak var interestLabel2: UILabel!
     @IBOutlet weak var interestLabel3: UILabel!
     @IBOutlet weak var followButton: UIButton!
- 
+    
     var viewModel: MatchDetailViewModel?
     
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class MatchDetailViewController: UIViewController {
     private func setupUI() {
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         profileImageView.clipsToBounds = true
-    
+        
         followButton.layer.cornerRadius = 10
         followButton.backgroundColor = UIColor.systemOrange
         followButton.setTitleColor(.white, for: .normal)
@@ -76,15 +76,16 @@ class MatchDetailViewController: UIViewController {
         }
     }
     
-        private func updateFollowButton() {
-               let title = viewModel?.isFollowing ?? false ? "Unfollow" : "Follow"
-               followButton.setTitle(title, for: .normal)
-           }
-
-
-           private func showError(_ error: String) {
-               let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
-               alert.addAction(UIAlertAction(title: "OK", style: .default))
-               present(alert, animated: true)
-           }
-       }
+    private func updateFollowButton() {
+        let title = viewModel?.isFollowing ?? false ? "Unfollow" : "Follow"
+        followButton.setTitle(title, for: .normal)
+    }
+    
+    
+    private func showError(_ error: Error) {
+        let message = error.localizedDescription
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+}

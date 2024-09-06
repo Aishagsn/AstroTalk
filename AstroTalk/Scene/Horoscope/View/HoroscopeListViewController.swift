@@ -8,9 +8,7 @@ import UIKit
 
 class HoroscopeListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    
-    // Keep using HoroscopeService in the view model initialization
-    var viewModel: HoroscopeListViewModel = HoroscopeListViewModel(horoscopeService: HoroscopeService())
+    var viewModel = HoroscopeListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,14 +43,14 @@ extension HoroscopeListViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let horoscope = viewModel.horoscope(at: indexPath.row)
-        cell.textLabel?.text = horoscope.name
+        cell.textLabel?.text = horoscope.horoscopeName
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedHoroscope = viewModel.horoscope(at: indexPath.row)
         let detailVC = storyboard?.instantiateViewController(withIdentifier: "HoroscopeDetailViewController") as! HoroscopeDetailViewController
-        detailVC.viewModel = HoroscopeDetailViewModel(horoscope: selectedHoroscope)
+        detailVC.viewModel = HoroscopeDetailViewModel(horoscopeDetail: selectedHoroscope)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
