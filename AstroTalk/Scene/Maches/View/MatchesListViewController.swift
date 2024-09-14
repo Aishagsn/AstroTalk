@@ -17,6 +17,7 @@ class MatchesListViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.register(UINib(nibName: String(describing: MatchCell.self), bundle: nil), forCellWithReuseIdentifier: "MatchtCell")
         fetchMatches()
     }
 

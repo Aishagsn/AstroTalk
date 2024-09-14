@@ -36,9 +36,6 @@ class HoroscopeDetailViewController: UIViewController {
                horoscopeImage.image = UIImage(named: "defaultPlanetImage")
            }
        }
-   
-    
-    
     }
     
     

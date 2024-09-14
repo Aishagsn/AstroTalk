@@ -14,7 +14,7 @@ class HoroscopeListViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bindViewModel()
-        fetchHoroscopes()
+        viewModel.fetchHoroscope()
     }
     
     private func setupUI() {
@@ -28,29 +28,24 @@ class HoroscopeListViewController: UIViewController {
             self?.tableView.reloadData()
         }
     }
-    
-    private func fetchHoroscopes() {
-        viewModel.fetchHoroscope(for: "Aries", period: "daily") {
-        }
-    }
 }
 
 extension HoroscopeListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfHoroscopes
+        return viewModel.horoscope.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let horoscope = viewModel.horoscope(at: indexPath.row)
-        cell.textLabel?.text = horoscope.horoscopeName
+//        let horoscope = viewModel.horoscope(at: indexPath.row)
+        cell.textLabel?.text = viewModel.horoscope[indexPath.row].horoscopeName
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedHoroscope = viewModel.horoscope(at: indexPath.row)
+        let selectedHoroscopeDetail = viewModel.horoscopeDetail(at:indexPath.row)
         let detailVC = storyboard?.instantiateViewController(withIdentifier: "HoroscopeDetailViewController") as! HoroscopeDetailViewController
-        detailVC.viewModel = HoroscopeDetailViewModel(horoscopeDetail: selectedHoroscope)
+        detailVC.viewModel = HoroscopeDetailViewModel(horoscopeDetail: selectedHoroscopeDetail)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

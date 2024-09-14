@@ -24,7 +24,9 @@ class PlanetViewController: UIViewController {
     private func setupUI() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PlanetCell")
+        tableView.register(UINib(nibName: "\(PlanetTableViewCell.self)", bundle: nil), forCellReuseIdentifier: "PlanetCell")
+        
+
     }
     
     private func bindViewModel() {
@@ -42,7 +44,7 @@ extension PlanetViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PlanetCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PlanetCell", for: indexPath) as! PlanetTableViewCell
         let planet = viewModel.planets.value[indexPath.row]
         cell.textLabel?.text = planet.name 
         return cell

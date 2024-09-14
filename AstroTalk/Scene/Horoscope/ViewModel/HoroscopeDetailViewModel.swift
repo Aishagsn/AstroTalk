@@ -25,5 +25,6 @@ class HoroscopeDetailViewModel {
     var planet: String {
         return horoscopeDetail.planet
     }
+
 }
 
