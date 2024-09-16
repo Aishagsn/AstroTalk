@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
      var viewModel = HomeViewModel()
     var userList = [User]()
     var filterUser = [User]()
+    var motivationMessages: [MotivationMessage] = []
 //    var coordinator : AppCoordinator
 //    // Custom initializer
 //      init(viewModel: HomeViewModel, coordinator: AppCoordinator) {
@@ -32,7 +33,7 @@ class HomeViewController: UIViewController {
         configureUI()
         bindViewModel()
         viewModel.fetchData()
-        
+        fetchMotivationData()
     }
     
     private func configureUI() {
@@ -60,6 +61,18 @@ class HomeViewController: UIViewController {
             self?.motivationCollectionView.reloadData()
         }
     }
+    func fetchMotivationData() {
+           NetworkManager.request(model: [MotivationMessage].self, endpoint: "api/motivation") { [weak self] data, error in
+               if let data = data {
+                   self?.motivationMessages = data
+                   DispatchQueue.main.async {
+                       self?.motivationCollectionView.reloadData()
+                   }
+               } else if let error = error {
+                   print("Error fetching motivation data: \(error)")
+               }
+           }
+       }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource

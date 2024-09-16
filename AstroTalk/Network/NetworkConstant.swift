@@ -12,7 +12,7 @@ class NetworkConstant {
     static let baseURL = "http://35.223.201.116:8088/"
     static let header: HTTPHeaders = [
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJBVVRIX0tFWSI6IlVTRVIsQURNSU4iLCJzdWIiOiJlbHRhakFkbWluIiwiaWF0IjoxNzI2Mjk5MjEzLCJleHAiOjE3MjYzODU2MTN9.2kDBKMCGT4UJoiO6iMvMoDNTCz0nqSgoPHzjo1BdQXg"
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJBVVRIX0tFWSI6IkFETUlOLFVTRVIiLCJzdWIiOiJlbHRhakFkbWluIiwiaWF0IjoxNzI2NDM4OTUwLCJleHAiOjE3MjY1MjUzNTB9.-MmXFPRLo4umP4BBa72h3Bpiv801mLNdrw-EC2v2A70"
     ]
     
     static func getUrl(with endpoint: String) -> String {
