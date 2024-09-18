@@ -11,7 +11,7 @@ class HoroscopeListViewModel {
     var horoscope: [Horoscope] = []
     var onHoroscopesUpdated: (() -> Void)?
     var horoscopeDetail: [HoroscopeDetail] = []
-    var horoscopes: Observable<[Horoscope]> = Observable([])
+    var horoscopes: [Horoscope] = []
     private let horoscopeService = HoroscopeService()
     var coordinator: AppCoordinator?
 
@@ -32,9 +32,8 @@ class HoroscopeListViewModel {
         horoscopeService.fetchHoroscope{ [weak self] result in
             switch result {
             case .success(let horoscopes):
-                DispatchQueue.main.async {
-                    self?.horoscopes.value = horoscopes
-                }
+                    self?.horoscopes
+                self?.onHoroscopesUpdated
             case .failure(let error):
                 print("Failed to fetch planets: \(error.localizedDescription)")
             }
@@ -42,7 +41,7 @@ class HoroscopeListViewModel {
         }
     }
     func didSelectPlanet(at indexPath: IndexPath) {
-        let selectedPlanet = horoscopes.value[indexPath.row]
+        let selectedPlanet = horoscopes[indexPath.row]
         coordinator?.showHoroscopeList()
     }
 
