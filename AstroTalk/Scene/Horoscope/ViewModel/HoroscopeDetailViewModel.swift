@@ -15,16 +15,16 @@ class HoroscopeDetailViewModel {
     }
   
     var features: String {
-        return horoscopeDetail.features
+        return horoscopeDetail.features ?? "Features not available"
     }
     
     var type: String {
-        return horoscopeDetail.type
+        return horoscopeDetail.type ?? "Type not available"
     }
     
     var planet: String {
-        return horoscopeDetail.planet
+        return horoscopeDetail.planet ?? "Planet not available"
     }
-
 }
+
 

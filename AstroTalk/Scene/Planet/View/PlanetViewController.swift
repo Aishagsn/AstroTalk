@@ -11,13 +11,10 @@ class PlanetViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var viewModel = PlanetViewModel()
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         bindViewModel()
-        viewModel.coordinator = AppCoordinator(navigationController: navigationController ?? UINavigationController())
         viewModel.fetchPlanets()
     }
     
@@ -30,29 +27,27 @@ class PlanetViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.planets.bind { [weak self] _ in
-            guard let self = self else { return }
-            self.tableView.reloadData()
+            viewModel.onPlanetsUpdated = { [weak self] in
+                self?.tableView.reloadData()
+            }
         }
-    }
 
 }
 
 extension PlanetViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.planets.value.count
+        return viewModel.planets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlanetCell", for: indexPath) as! PlanetTableViewCell
-        let planet = viewModel.planets.value[indexPath.row]
-        cell.textLabel?.text = planet.name 
-        return cell
+        let planet = viewModel.planets[indexPath.row]
+        cell.configure(with: planet)
+               return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        viewModel.didSelectPlanet(at: indexPath)
-        let planet = viewModel.planets.value[indexPath.row]
-        viewModel.coordinator?.showPlanetDetail(for: planet)
-    }
+        let selectedPlanet = viewModel.planets[indexPath.row]
+               viewModel.coordinator?.showPlanetDetail(for: selectedPlanet)
+           }
 }

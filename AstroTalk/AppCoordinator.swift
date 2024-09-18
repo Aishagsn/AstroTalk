@@ -52,13 +52,16 @@ class AppCoordinator {
     }
     
     func showPlanetDetail(for planet: Planet) {
-        let detailViewModel = PlanetDetailViewModel(planet: planet)
+        let detailViewModel = PlanetDetailViewModel(planets: [planet])
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let detailVC = mainStoryboard.instantiateViewController(withIdentifier: "PlanetDetailViewController") as! PlanetDetailViewController
+        guard let detailVC = mainStoryboard.instantiateViewController(withIdentifier: "PlanetDetailViewController") as? PlanetDetailViewController else {
+            print("Failed to instantiate PlanetDetailViewController")
+            return
+        }
         detailVC.viewModel = detailViewModel
         navigationController.pushViewController(detailVC, animated: true)
     }
+
     func showHoroscopeList() {
         let horoscopeService = HoroscopeService()
         let viewModel = HoroscopeListViewModel()
@@ -78,14 +81,25 @@ class AppCoordinator {
     
     func showMatchDetail(for match: Match) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let matchDetailVC = mainStoryboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
-        let detailViewModel = MatchDetailViewModel()
-        detailViewModel.fetchMatchDetail(for: match.name) {_,_ in
+        guard let matchDetailVC = mainStoryboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as? MatchDetailViewController else {
+            print("Could not instantiate MatchDetailViewController")
+            return
+        }
+      
+        let detailViewModel = MatchDetailViewModel(match: match)
+     
+        detailViewModel.fetchMatchDetail(for: match.name ?? "") { [weak self] matchDetail, error in
             DispatchQueue.main.async {
-                matchDetailVC.viewModel = detailViewModel
-                self.navigationController.pushViewController(matchDetailVC, animated: true)
+                if let matchDetail = matchDetail {
+                    matchDetailVC.viewModel = detailViewModel
+                    self?.navigationController.pushViewController(matchDetailVC, animated: true)
+                } else {
+                    print("Failed to fetch match details: \(error ?? "Unknown error")")
+                }
             }
         }
     }
+
+
     
 }

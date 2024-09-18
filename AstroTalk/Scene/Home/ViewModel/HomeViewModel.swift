@@ -24,9 +24,9 @@ class HomeViewModel {
       }
     
     func fetchData() {
-        let storiesEndpoint = "stories"
-                let postsEndpoint = "posts"
-                let motivationMessagesEndpoint = "motivationMessages"
+        let storiesEndpoint = "api/stories"
+                let postsEndpoint = "api/posts"
+                let motivationMessagesEndpoint = "api/motivationMessages"
         
                 NetworkManager.request(model: [Story].self, endpoint: storiesEndpoint) { [weak self] (stories, error) in
                     if let stories = stories {

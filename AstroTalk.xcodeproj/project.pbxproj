@@ -11,6 +11,8 @@
 		29069F582C8B69AD0067C136 /* PlanetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29069F572C8B69AD0067C136 /* PlanetTableViewCell.xib */; };
 		29069F592C8B69AD0067C136 /* PlanetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29069F562C8B69AD0067C136 /* PlanetTableViewCell.swift */; };
 		29069F5B2C8BB7340067C136 /* HoroscopeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29069F5A2C8BB7340067C136 /* HoroscopeDetail.swift */; };
+		29069F602C9B34D50067C136 /* HoroscopeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29069F5F2C9B34D50067C136 /* HoroscopeTableViewCell.xib */; };
+		29069F612C9B34D50067C136 /* HoroscopeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29069F5E2C9B34D50067C136 /* HoroscopeTableViewCell.swift */; };
 		290C38AE2C7A3BE6001D5D0E /* PlanetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38AD2C7A3BE6001D5D0E /* PlanetViewController.swift */; };
 		290C38B02C7A3BF6001D5D0E /* PlanetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38AF2C7A3BF6001D5D0E /* PlanetViewModel.swift */; };
 		290C38B32C7A3D0D001D5D0E /* PlanetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38B22C7A3D0D001D5D0E /* PlanetService.swift */; };
@@ -62,6 +64,8 @@
 		29069F562C8B69AD0067C136 /* PlanetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetTableViewCell.swift; sourceTree = "<group>"; };
 		29069F572C8B69AD0067C136 /* PlanetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanetTableViewCell.xib; sourceTree = "<group>"; };
 		29069F5A2C8BB7340067C136 /* HoroscopeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeDetail.swift; sourceTree = "<group>"; };
+		29069F5E2C9B34D50067C136 /* HoroscopeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeTableViewCell.swift; sourceTree = "<group>"; };
+		29069F5F2C9B34D50067C136 /* HoroscopeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HoroscopeTableViewCell.xib; sourceTree = "<group>"; };
 		290C38AD2C7A3BE6001D5D0E /* PlanetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewController.swift; sourceTree = "<group>"; };
 		290C38AF2C7A3BF6001D5D0E /* PlanetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewModel.swift; sourceTree = "<group>"; };
 		290C38B22C7A3D0D001D5D0E /* PlanetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetService.swift; sourceTree = "<group>"; };
@@ -374,6 +378,8 @@
 				290C38E22C82140A001D5D0E /* MatchCell.xib */,
 				29069F562C8B69AD0067C136 /* PlanetTableViewCell.swift */,
 				29069F572C8B69AD0067C136 /* PlanetTableViewCell.xib */,
+				29069F5E2C9B34D50067C136 /* HoroscopeTableViewCell.swift */,
+				29069F5F2C9B34D50067C136 /* HoroscopeTableViewCell.xib */,
 			);
 			path = ReusableView;
 			sourceTree = "<group>";
@@ -450,6 +456,7 @@
 				2998CE8C2C54162600DD844B /* Assets.xcassets in Resources */,
 				2998CE8F2C54162600DD844B /* Base in Resources */,
 				2998CE8A2C54162500DD844B /* Base in Resources */,
+				29069F602C9B34D50067C136 /* HoroscopeTableViewCell.xib in Resources */,
 				290C38E42C82140A001D5D0E /* MatchCell.xib in Resources */,
 				29069F582C8B69AD0067C136 /* PlanetTableViewCell.xib in Resources */,
 			);
@@ -466,6 +473,7 @@
 				290C38B02C7A3BF6001D5D0E /* PlanetViewModel.swift in Sources */,
 				2998CE9A2C54EF8700DD844B /* RegisterController.swift in Sources */,
 				2998CED92C5CF3F100DD844B /* MotivationCollectionViewCell.swift in Sources */,
+				29069F612C9B34D50067C136 /* HoroscopeTableViewCell.swift in Sources */,
 				290C38B62C7A3D68001D5D0E /* Planet.swift in Sources */,
 				2998CEC52C5CE9FB00DD844B /* HomeViewModel.swift in Sources */,
 				2998CECD2C5CEB3300DD844B /* StoryCollectionViewCell.swift in Sources */,

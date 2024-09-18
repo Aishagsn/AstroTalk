@@ -20,7 +20,8 @@ class HoroscopeListViewController: UIViewController {
     private func setupUI() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        let nib = UINib(nibName: "HoroscopeTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "HoroscopeCell")
     }
     
     private func bindViewModel() {
@@ -32,21 +33,44 @@ class HoroscopeListViewController: UIViewController {
 
 extension HoroscopeListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.horoscope.count
+        return viewModel.horoscopes.count
+        print(viewModel.horoscopes.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        let horoscope = viewModel.horoscope(at: indexPath.row)
-        cell.textLabel?.text = viewModel.horoscope[indexPath.row].horoscopeName
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HoroscopeCell", for: indexPath) as! HoroscopeTableViewCell
+        let horoscope = viewModel.horoscopes[indexPath.row]
+        cell.configure(with: horoscope)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedHoroscopeDetail = viewModel.horoscopeDetail(at:indexPath.row)
-        let detailVC = storyboard?.instantiateViewController(withIdentifier: "HoroscopeDetailViewController") as! HoroscopeDetailViewController
-        detailVC.viewModel = HoroscopeDetailViewModel(horoscopeDetail: selectedHoroscopeDetail)
-        navigationController?.pushViewController(detailVC, animated: true)
-    }
-}
-
+        
+        //        guard let selectedHoroscopeDetail = viewModel.horoscopeDetail(at: indexPath.row) else {
+        //            print("Failed to get horoscope detail at index \(indexPath.row)")
+        //            return
+        //        }
+        //
+        //        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "HoroscopeDetailViewController") as? HoroscopeDetailViewController else {
+        //            print("Could not instantiate HoroscopeDetailViewController")
+        //            return
+        //        }
+        //
+        //
+        //        detailVC.viewModel = HoroscopeDetailViewModel(horoscopeDetail: selectedHoroscopeDetail)
+        //
+        //        navigationController?.pushViewController(detailVC, animated: true)
+        //    }
+        //
+        if let selectedHoroscopeDetail = viewModel.horoscopeDetail(at: indexPath.row) {
+                   if let detailVC = storyboard?.instantiateViewController(withIdentifier: "HoroscopeDetailViewController") as? HoroscopeDetailViewController {
+                       detailVC.viewModel = HoroscopeDetailViewModel(horoscopeDetail: selectedHoroscopeDetail)
+                       navigationController?.pushViewController(detailVC, animated: true)
+                   } else {
+                       print("Could not instantiate HoroscopeDetailViewController")
+                   }
+               } else {
+                   print("Error: HoroscopeDetail is nil")
+               }
+           }
+       }

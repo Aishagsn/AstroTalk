@@ -19,6 +19,6 @@ struct Post: Codable  {
 }
 
 struct MotivationMessage: Codable  {
-    let imageName: String
+    let imageName: String?
 }
 

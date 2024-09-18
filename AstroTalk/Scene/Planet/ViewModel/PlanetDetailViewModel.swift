@@ -11,25 +11,20 @@ import UIKit
 import Alamofire
 
 class PlanetDetailViewModel {
-    var planet: Observable<Planet>
+    var planets: [Planet]
     
-    init(planet: Planet) {
-        self.planet = Observable(planet)
+    init(planets: [Planet]) {
+        self.planets = planets
     }
-//    func loadImage(completion: @escaping (Data?) -> Void) {
-//            let imageUrl = planet.value.image
-////        let imageUrl = NetworkConstant.getImageUrl(with: endpoint)
-//        NetworkManager.request(model: Data.self, endpoint: imageUrl, method: .get) { data, error in
-//                if let error = error {
-//                    print("Failed to load image: \(error)")
-//                    completion(nil)
-//                    return
-//                }
-//                completion(data)
-//            }
-    //}
-    func loadImage(completion: @escaping (Data?) -> Void) {
-        let imageUrl = planet.value.image
+    
+    func loadImage(for index: Int, completion: @escaping (Data?) -> Void) {
+        guard index < planets.count else {
+            print("Index out of bounds")
+            completion(nil)
+            return
+        }
+        
+        let imageUrl = planets[index].image ?? ""
         AF.request(imageUrl).response { response in
             if let data = response.data {
                 completion(data)
@@ -39,6 +34,4 @@ class PlanetDetailViewModel {
             }
         }
     }
-
-        }
-    
+}

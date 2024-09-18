@@ -16,24 +16,12 @@ class HomeViewController: UIViewController {
     var userList = [User]()
     var filterUser = [User]()
     var motivationMessages: [MotivationMessage] = []
-//    var coordinator : AppCoordinator
-//    // Custom initializer
-//      init(viewModel: HomeViewModel, coordinator: AppCoordinator) {
-//          self.viewModel = viewModel
-//          self.coordinator = coordinator
-//          super.init(nibName: nil, bundle: nil)  // Call super.init before using self
-//      }
 
-      // Required initializer for storyboard
-//      required init?(coder: NSCoder) {
-//          fatalError("init(coder:) has not been implemented. Use the custom initializer instead.")
-//      }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         bindViewModel()
         viewModel.fetchData()
-        fetchMotivationData()
     }
     
     private func configureUI() {
@@ -61,18 +49,17 @@ class HomeViewController: UIViewController {
             self?.motivationCollectionView.reloadData()
         }
     }
-    func fetchMotivationData() {
-           NetworkManager.request(model: [MotivationMessage].self, endpoint: "api/motivation") { [weak self] data, error in
-               if let data = data {
-                   self?.motivationMessages = data
-                   DispatchQueue.main.async {
-                       self?.motivationCollectionView.reloadData()
-                   }
-               } else if let error = error {
-                   print("Error fetching motivation data: \(error)")
-               }
-           }
-       }
+//    func fetchMotivationData() {
+//           NetworkManager.request(model: [MotivationMessage].self, endpoint: "api/motivationMessages") { [weak self] data, error in
+//               if let data = data {
+//                   self?.motivationMessages = data
+//                       self?.motivationCollectionView.reloadData()
+//                   
+//               } else if let error = error {
+//                   print("Error fetching motivation data: \(error)")
+//               }
+//           }
+//       }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource

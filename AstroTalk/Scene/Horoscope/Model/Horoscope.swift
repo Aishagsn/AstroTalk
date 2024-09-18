@@ -7,6 +7,7 @@
 
 import Foundation
 struct Horoscope: Codable {
-    let horoscopeName: String
-    let image: String
+    let image: String?
+    let horoscopeName: String?
 }
+

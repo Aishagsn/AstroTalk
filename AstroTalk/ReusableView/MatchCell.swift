@@ -20,14 +20,13 @@ class MatchCell: UICollectionViewCell {
                profileImageView.clipsToBounds = true
            }
            
-           func configure(with match: Match) {
-               nameLabel.text = match.name
-               ageLabel.text = "\(match.age)"
-              
-               if let url = URL(string: match.imageUrl) {
-                   profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholderImage"))
-               } else {
-                   profileImageView.image = UIImage(named: "placeholderImage")
-               }
+    func configure(with match: Match) {
+           nameLabel.text = match.name ?? "Unknown"
+           ageLabel.text = match.age.map { "\($0)" } ?? "N/A"
+           if let imageUrlString = match.imageUrl, let url = URL(string: imageUrlString) {
+               profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholderImage"))
+           } else {
+               profileImageView.image = UIImage(named: "placeholderImage")
            }
        }
+   }

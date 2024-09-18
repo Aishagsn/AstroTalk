@@ -12,7 +12,11 @@ class MatchDetailViewModel {
     var matchDetail: MatchDetail?
     private(set) var isFollowing: Bool = false
     
-
+    private let match: Match
+        
+        init(match: Match) {
+            self.match = match
+        }
 
     func fetchMatchDetail(for name: String, completion: @escaping (MatchDetail?, String?) -> Void) {
         matchService.fetchMatchDetail(for: name) { [weak self] matchDetail, errorMessage in
