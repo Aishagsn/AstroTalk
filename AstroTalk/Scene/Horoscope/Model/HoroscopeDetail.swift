@@ -10,4 +10,5 @@ struct HoroscopeDetail: Codable{
     let features: String?
     let planet: String?
     let type: String?
+    let id: Int?
 }

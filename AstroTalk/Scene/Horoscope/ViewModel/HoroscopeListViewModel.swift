@@ -35,19 +35,7 @@ class HoroscopeListViewModel {
     func horoscope(at index: Int) -> Horoscope {
         return horoscopes[index]
     }
-    func horoscopeDetail(at index: Int) -> HoroscopeDetail? {
-        guard index >= 0 && index < horoscopeDetail.count else {
-            print("Index \(index) is out of range. Available range: 0 to \(horoscopeDetail.count - 1).")
-            return nil
-        }
-        
-        let detail = horoscopeDetail[index]
-        return HoroscopeDetail(
-            features: detail.features ?? "Features not available",
-            planet: detail.planet ?? "Planet not available",
-            type: detail.type ?? "Type not available"
-        )
-    }
+
 
    
 

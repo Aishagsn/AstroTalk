@@ -19,7 +19,7 @@ class MatchDetailViewController: UIViewController {
     @IBOutlet weak var interestLabel3: UILabel!
     @IBOutlet weak var followButton: UIButton!
     
-    var viewModel: MatchDetailViewModel?
+    var viewModel = MatchDetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class MatchDetailViewController: UIViewController {
     }
     
     @IBAction func followButtonTapped(_ sender: Any) {
-        viewModel?.followUser { [weak self] success, error in
+        viewModel.followUser { [weak self] success, error in
             DispatchQueue.main.async {
                 if success {
                     self?.updateFollowButton()
@@ -49,7 +49,7 @@ class MatchDetailViewController: UIViewController {
         }
     }
     private func bindViewModel() {
-        guard let matchDetail = viewModel?.matchDetail else { return }
+        guard let matchDetail = viewModel.matchDetail else { return }
         
         nameLabel.text = matchDetail.name
         ageLabel.text = "\(matchDetail.age)"
@@ -77,9 +77,10 @@ class MatchDetailViewController: UIViewController {
     }
     
     private func updateFollowButton() {
-        let title = viewModel?.isFollowing ?? false ? "Unfollow" : "Follow"
+        let title = viewModel.isFollowing ? "Unfollow" : "Follow"
         followButton.setTitle(title, for: .normal)
     }
+
     
     
     private func showError(_ error: Error) {

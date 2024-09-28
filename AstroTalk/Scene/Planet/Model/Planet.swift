@@ -13,4 +13,5 @@ struct Planet: Codable {
     let gravitation: String?
     let area: String?
     let about: String?
+    let id: Int?
 }

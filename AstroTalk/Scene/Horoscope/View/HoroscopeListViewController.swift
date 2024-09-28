@@ -21,7 +21,7 @@ class HoroscopeListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         let nib = UINib(nibName: "HoroscopeTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "HoroscopeCell")
+        tableView.register(nib, forCellReuseIdentifier: "HoroscopeTableViewCell")
     }
     
     private func bindViewModel() {
@@ -34,11 +34,10 @@ class HoroscopeListViewController: UIViewController {
 extension HoroscopeListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.horoscopes.count
-        print(viewModel.horoscopes.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HoroscopeCell", for: indexPath) as! HoroscopeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HoroscopeTableViewCell", for: indexPath) as! HoroscopeTableViewCell
         let horoscope = viewModel.horoscopes[indexPath.row]
         cell.configure(with: horoscope)
         return cell
@@ -62,15 +61,10 @@ extension HoroscopeListViewController: UITableViewDataSource, UITableViewDelegat
         //        navigationController?.pushViewController(detailVC, animated: true)
         //    }
         //
-        if let selectedHoroscopeDetail = viewModel.horoscopeDetail(at: indexPath.row) {
+         
                    if let detailVC = storyboard?.instantiateViewController(withIdentifier: "HoroscopeDetailViewController") as? HoroscopeDetailViewController {
-                       detailVC.viewModel = HoroscopeDetailViewModel(horoscopeDetail: selectedHoroscopeDetail)
+                       detailVC.viewModel = HoroscopeDetailViewModel(id: viewModel.horoscopes[indexPath.row].id ?? 0)
                        navigationController?.pushViewController(detailVC, animated: true)
-                   } else {
-                       print("Could not instantiate HoroscopeDetailViewController")
                    }
-               } else {
-                   print("Error: HoroscopeDetail is nil")
-               }
            }
        }

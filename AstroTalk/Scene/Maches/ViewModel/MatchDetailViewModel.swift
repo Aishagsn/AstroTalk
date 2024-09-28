@@ -11,38 +11,33 @@ class MatchDetailViewModel {
     private let matchService = MatchService()
     var matchDetail: MatchDetail?
     private(set) var isFollowing: Bool = false
+    var match: [Match] = []
     
-    private let match: Match
-        
-        init(match: Match) {
-            self.match = match
-        }
 
     func fetchMatchDetail(for name: String, completion: @escaping (MatchDetail?, String?) -> Void) {
-        matchService.fetchMatchDetail(for: name) { [weak self] matchDetail, errorMessage in
-            if let error = errorMessage {
-                completion(nil, error)
-            } else if let matchDetail = matchDetail {
+        matchService.fetchMatchDetail(for: name) { [weak self] result in
+            switch result {
+            case .success(let matchDetail):
                 self?.matchDetail = matchDetail
                 completion(matchDetail, nil)
-            } else {
-                completion(nil, "Unknown error occurred.")
+            case .failure(let error):
+                completion(nil, error.localizedDescription)
             }
         }
     }
+
     func followUser(completion: @escaping (Bool, Error?) -> Void) {
         isFollowing.toggle()
         
         let action = isFollowing ? "followed" : "unfollowed"
         let message = "\(matchDetail?.name ?? "") has been \(action)."
         
-        // Simulate network request or action
         DispatchQueue.global().async {
-            sleep(1) // Simulate network delay
+            sleep(1)
             
             DispatchQueue.main.async {
                 print(message)
-                completion(true, nil) // Notify success
+                completion(true, nil)
             }
         }
     }

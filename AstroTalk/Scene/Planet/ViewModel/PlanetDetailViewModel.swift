@@ -11,10 +11,11 @@ import UIKit
 import Alamofire
 
 class PlanetDetailViewModel {
-    var planets: [Planet]
+    private let id: Int
+    var planets: [Planet] = []
     
-    init(planets: [Planet]) {
-        self.planets = planets
+    init(id: Int) {
+        self.id = id
     }
     
     func loadImage(for index: Int, completion: @escaping (Data?) -> Void) {

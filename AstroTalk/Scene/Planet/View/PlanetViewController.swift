@@ -43,11 +43,16 @@ extension PlanetViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlanetCell", for: indexPath) as! PlanetTableViewCell
         let planet = viewModel.planets[indexPath.row]
         cell.configure(with: planet)
-               return cell
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPlanet = viewModel.planets[indexPath.row]
-               viewModel.coordinator?.showPlanetDetail(for: selectedPlanet)
-           }
+        viewModel.coordinator?.showPlanetDetail(for: selectedPlanet)
+        
+        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "PlanetDetailViewController") as? PlanetDetailViewController {
+            detailVC.viewModel = PlanetDetailViewModel(id: viewModel.planets[indexPath.row].id ?? 0)
+            navigationController?.pushViewController(detailVC, animated: true)
+        }
+    }
 }

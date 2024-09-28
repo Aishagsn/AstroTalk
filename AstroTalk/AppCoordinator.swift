@@ -52,7 +52,11 @@ class AppCoordinator {
     }
     
     func showPlanetDetail(for planet: Planet) {
-        let detailViewModel = PlanetDetailViewModel(planets: [planet])
+        guard let planetId = planet.id else {
+               print("Planet id is not available")
+               return
+           }
+        let detailViewModel = PlanetDetailViewModel(id: planetId)
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         guard let detailVC = mainStoryboard.instantiateViewController(withIdentifier: "PlanetDetailViewController") as? PlanetDetailViewController else {
             print("Failed to instantiate PlanetDetailViewController")
@@ -86,7 +90,7 @@ class AppCoordinator {
             return
         }
       
-        let detailViewModel = MatchDetailViewModel(match: match)
+        let detailViewModel = MatchDetailViewModel()
      
         detailViewModel.fetchMatchDetail(for: match.name ?? "") { [weak self] matchDetail, error in
             DispatchQueue.main.async {

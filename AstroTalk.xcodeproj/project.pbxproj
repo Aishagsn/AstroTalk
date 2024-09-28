@@ -13,6 +13,11 @@
 		29069F5B2C8BB7340067C136 /* HoroscopeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29069F5A2C8BB7340067C136 /* HoroscopeDetail.swift */; };
 		29069F602C9B34D50067C136 /* HoroscopeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29069F5F2C9B34D50067C136 /* HoroscopeTableViewCell.xib */; };
 		29069F612C9B34D50067C136 /* HoroscopeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29069F5E2C9B34D50067C136 /* HoroscopeTableViewCell.swift */; };
+		29069F672CA86FE20067C136 /* UserProfile .swift in Sources */ = {isa = PBXBuildFile; fileRef = 29069F662CA86FE20067C136 /* UserProfile .swift */; };
+		29069F6A2CA870A90067C136 /* ProfileEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29069F692CA870A90067C136 /* ProfileEditController.swift */; };
+		29069F702CA871050067C136 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29069F6F2CA871050067C136 /* ProfileViewModel.swift */; };
+		29069F722CA8713D0067C136 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29069F712CA8713D0067C136 /* ProfileViewController.swift */; };
+		29069F742CA8778F0067C136 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29069F732CA8778F0067C136 /* ProfileService.swift */; };
 		290C38AE2C7A3BE6001D5D0E /* PlanetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38AD2C7A3BE6001D5D0E /* PlanetViewController.swift */; };
 		290C38B02C7A3BF6001D5D0E /* PlanetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38AF2C7A3BF6001D5D0E /* PlanetViewModel.swift */; };
 		290C38B32C7A3D0D001D5D0E /* PlanetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290C38B22C7A3D0D001D5D0E /* PlanetService.swift */; };
@@ -66,6 +71,11 @@
 		29069F5A2C8BB7340067C136 /* HoroscopeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeDetail.swift; sourceTree = "<group>"; };
 		29069F5E2C9B34D50067C136 /* HoroscopeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeTableViewCell.swift; sourceTree = "<group>"; };
 		29069F5F2C9B34D50067C136 /* HoroscopeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HoroscopeTableViewCell.xib; sourceTree = "<group>"; };
+		29069F662CA86FE20067C136 /* UserProfile .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfile .swift"; sourceTree = "<group>"; };
+		29069F692CA870A90067C136 /* ProfileEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditController.swift; sourceTree = "<group>"; };
+		29069F6F2CA871050067C136 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		29069F712CA8713D0067C136 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		29069F732CA8778F0067C136 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		290C38AD2C7A3BE6001D5D0E /* PlanetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewController.swift; sourceTree = "<group>"; };
 		290C38AF2C7A3BF6001D5D0E /* PlanetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewModel.swift; sourceTree = "<group>"; };
 		290C38B22C7A3D0D001D5D0E /* PlanetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetService.swift; sourceTree = "<group>"; };
@@ -127,6 +137,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29069F642CA86F6E0067C136 /* ProfileEdit */ = {
+			isa = PBXGroup;
+			children = (
+				29069F682CA870860067C136 /* View */,
+				29069F652CA86F980067C136 /* Model */,
+			);
+			path = ProfileEdit;
+			sourceTree = "<group>";
+		};
+		29069F652CA86F980067C136 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				29069F662CA86FE20067C136 /* UserProfile .swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		29069F682CA870860067C136 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				29069F692CA870A90067C136 /* ProfileEditController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		29069F6B2CA870CB0067C136 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				29069F6E2CA870ED0067C136 /* View */,
+				29069F6D2CA870E40067C136 /* ViewModel */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		29069F6D2CA870E40067C136 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				29069F6F2CA871050067C136 /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		29069F6E2CA870ED0067C136 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				29069F712CA8713D0067C136 /* ProfileViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		290C38AC2C7A3BD5001D5D0E /* Planet */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +203,7 @@
 				290C38B22C7A3D0D001D5D0E /* PlanetService.swift */,
 				290C38C92C7F7C0D001D5D0E /* HoroscopeService.swift */,
 				290C38DB2C820980001D5D0E /* MatchService .swift */,
+				29069F732CA8778F0067C136 /* ProfileService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -294,6 +355,8 @@
 		2998CE962C54EF5700DD844B /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				29069F6B2CA870CB0067C136 /* Profile */,
+				29069F642CA86F6E0067C136 /* ProfileEdit */,
 				290C38CF2C8208B4001D5D0E /* Maches */,
 				290C38BF2C7F7852001D5D0E /* Horoscope */,
 				290C38AC2C7A3BD5001D5D0E /* Planet */,
@@ -475,6 +538,7 @@
 				2998CED92C5CF3F100DD844B /* MotivationCollectionViewCell.swift in Sources */,
 				29069F612C9B34D50067C136 /* HoroscopeTableViewCell.swift in Sources */,
 				290C38B62C7A3D68001D5D0E /* Planet.swift in Sources */,
+				29069F722CA8713D0067C136 /* ProfileViewController.swift in Sources */,
 				2998CEC52C5CE9FB00DD844B /* HomeViewModel.swift in Sources */,
 				2998CECD2C5CEB3300DD844B /* StoryCollectionViewCell.swift in Sources */,
 				290C38DA2C820957001D5D0E /* MatchDetail.swift in Sources */,
@@ -482,6 +546,7 @@
 				290C38CC2C7F7C70001D5D0E /* HoroscopeDetailViewModel.swift in Sources */,
 				2998CE982C54EF7400DD844B /* LoginController.swift in Sources */,
 				290C38AE2C7A3BE6001D5D0E /* PlanetViewController.swift in Sources */,
+				29069F6A2CA870A90067C136 /* ProfileEditController.swift in Sources */,
 				2998CEA32C5A839000DD844B /* RegisterViewModel.swift in Sources */,
 				290C38DC2C820980001D5D0E /* MatchService .swift in Sources */,
 				2998CFC22C76008B00DD844B /* AppCoordinator.swift in Sources */,
@@ -496,6 +561,8 @@
 				290C38B32C7A3D0D001D5D0E /* PlanetService.swift in Sources */,
 				2998CE832C54162500DD844B /* AppDelegate.swift in Sources */,
 				290C38BA2C7A3EC9001D5D0E /* PlanetDetailViewModel.swift in Sources */,
+				29069F742CA8778F0067C136 /* ProfileService.swift in Sources */,
+				29069F702CA871050067C136 /* ProfileViewModel.swift in Sources */,
 				290C38E32C82140A001D5D0E /* MatchCell.swift in Sources */,
 				2998CE852C54162500DD844B /* SceneDelegate.swift in Sources */,
 				2998CE9D2C5A7EEF00DD844B /* RegisterStruct.swift in Sources */,
@@ -506,6 +573,7 @@
 				290C38BC2C7A3ED9001D5D0E /* PlanetDetailViewController.swift in Sources */,
 				2998CED32C5CEB7900DD844B /* PostTableViewCell.swift in Sources */,
 				290C38CE2C7F7CD7001D5D0E /* HoroscopeDetailViewController.swift in Sources */,
+				29069F672CA86FE20067C136 /* UserProfile .swift in Sources */,
 				29069F592C8B69AD0067C136 /* PlanetTableViewCell.swift in Sources */,
 				290C38C52C7F78A7001D5D0E /* HoroscopeListViewController.swift in Sources */,
 				2927D58B2C8A34C300977266 /* NetworkConstant.swift in Sources */,

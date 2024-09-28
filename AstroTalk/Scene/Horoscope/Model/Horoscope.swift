@@ -9,5 +9,6 @@ import Foundation
 struct Horoscope: Codable {
     let image: String?
     let horoscopeName: String?
+    let id: Int?
 }
 
