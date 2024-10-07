@@ -41,7 +41,6 @@ extension MatchesListViewController: UICollectionViewDelegate, UICollectionViewD
         if let match = viewModel.getMatch(at: indexPath.row) {
             cell.configure(with: match)
         } else {
-            // Return an empty cell if the match is nil
             return UICollectionViewCell()
         }
         return cell

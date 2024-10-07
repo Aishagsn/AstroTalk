@@ -12,8 +12,10 @@
 //
 
 import UIKit
+import Kingfisher
 
-class ProfileEditController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+class ProfileEditController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     var viewModel = ProfileViewModel()
     
@@ -55,11 +57,13 @@ class ProfileEditController: UIViewController, UIImagePickerControllerDelegate, 
                     self.lastNameTextField.text = profile.lastName
                     self.usernameTextField.text = profile.username
                     self.emailTextField.text = profile.email
-                    self.birthdayTextField.text = profile.birthday
-                    self.timeTextField.text = profile.birthdayTime
-                    if let imageData = profile.profileImageData {
-                                            self.profileImageView.image = UIImage(data: imageData)
-                                        }
+                    if let userDetails = self.viewModel.userDetails {
+                        self.birthdayTextField.text = userDetails.dateOfBirth
+                        self.timeTextField.text = userDetails.timeOfBirth
+                        if let imageURLString = userDetails.image, let url = URL(string: imageURLString) {
+                            self.profileImageView.kf.setImage(with: url)
+                        }
+                    }
                 } else {
                     self.showAlert(message: "Failed to load profile.")
                 }
@@ -107,7 +111,7 @@ class ProfileEditController: UIViewController, UIImagePickerControllerDelegate, 
 
     @objc func donePressedTime() {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/mm/yyyy" //
+        formatter.dateFormat = "dd/mm/yyyy" 
         timeTextField.text = formatter.string(from: timePicker.date)
         self.view.endEditing(true)
     }
@@ -122,7 +126,8 @@ class ProfileEditController: UIViewController, UIImagePickerControllerDelegate, 
     }
     @objc func selectProfileImage() {
         let actionSheet = UIAlertController(title: "Select Photo", message: "Choose a source", preferredStyle: .actionSheet)
-   
+        
+        // Option to take a photo using the camera
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             actionSheet.addAction(UIAlertAction(title: "Camera", style: .default) { _ in
                 self.openCamera()
@@ -151,20 +156,6 @@ class ProfileEditController: UIViewController, UIImagePickerControllerDelegate, 
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true)
-    }
-
-    // MARK: - UIImagePickerControllerDelegate
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let editedImage = info[.editedImage] as? UIImage {
-            profileImageView.image = editedImage
-        } else if let originalImage = info[.originalImage] as? UIImage {
-            profileImageView.image = originalImage
-        }
-        dismiss(animated: true)
-    }
-
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true)
     }
 
     func followUser(userToFollowId: Int) {

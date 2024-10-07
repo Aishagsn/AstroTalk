@@ -6,10 +6,11 @@
 //
 
 import Foundation
-import Alamofire
-import UIKit
+
 class ProfileViewModel {
-    var userProfile: UserProfile?
+    
+    var userProfile: User?
+    var userDetails: UserDetails?
     private let profileService = ProfileService()
     private(set) var userId: Int?
 
@@ -26,60 +27,56 @@ class ProfileViewModel {
             completion(true)
         }
     }
-
+    func fetchUserDetails(completion: @escaping (Bool) -> Void) {
+            profileService.fetchUserDetails { [weak self] details, error in
+                if let error = error {
+                    print("Error fetching user details: \(error)")
+                    completion(false)
+                    return
+                }
+                self?.userDetails = details
+                completion(true)
+            }
+        }
     func followUser(userToFollowId: Int, completion: @escaping (Bool) -> Void) {
-        guard let userId = userId else {
-            print("User ID is not available.")
-            completion(false)
-            return
-        }
-
-        profileService.followUser(userToFollowId: userToFollowId) { error in
-            if let error = error {
-                print("Error following user: \(error)")
-                completion(false)
-                return
+            profileService.followUser(userToFollowId: userToFollowId) { error in
+                if let error = error {
+                    print("Error following user: \(error)")
+                    completion(false)
+                    return
+                }
+                completion(true)
             }
-            completion(true)
         }
-    }
-
     func unfollowUser(userToUnfollowId: Int, completion: @escaping (Bool) -> Void) {
-        guard let userId = userId else {
-            print("User ID is not available.")
-            completion(false)
-            return
-        }
-
-        profileService.unfollowUser(userToUnfollowId: userToUnfollowId) { error in
-            if let error = error {
-                print("Error unfollowing user: \(error)")
-                completion(false)
-                return
-            }
-            completion(true)
-        }
-    }
+           profileService.unfollowUser(userToUnfollowId: userToUnfollowId) { error in
+               if let error = error {
+                   print("Error unfollowing user: \(error)")
+                   completion(false)
+                   return
+               }
+               completion(true)
+           }
+       }
 
     func fetchFollowersCount(completion: @escaping (Int?) -> Void) {
-        profileService.fetchFollowersCount { count, error in
-            if let error = error {
-                print("Error fetching followers count: \(error)")
-                completion(nil)
-                return
-            }
-            completion(count)
-        }
-    }
-
+           profileService.fetchFollowersCount { count, error in
+               if let error = error {
+                   print("Error fetching followers count: \(error)")
+                   completion(nil)
+                   return
+               }
+               completion(count)
+           }
+       }
     func fetchFollowingCount(completion: @escaping (Int?) -> Void) {
-        profileService.fetchFollowingCount { count, error in
-            if let error = error {
-                print("Error fetching following count: \(error)")
-                completion(nil)
-                return
-            }
-            completion(count)
-        }
-    }
-}
+           profileService.fetchFollowingCount { count, error in
+               if let error = error {
+                   print("Error fetching following count: \(error)")
+                   completion(nil)
+                   return
+               }
+               completion(count)
+           }
+       }
+   }

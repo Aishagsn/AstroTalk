@@ -9,42 +9,52 @@ import Foundation
 import Alamofire
 
 class ProfileService {
-    let baseURL = "http://34.28.199.212:8088/api/user"
-
-    func fetchUserProfile(completion: @escaping (UserProfile?, Error?) -> Void) {
-        let endpoint = "/me"
-        NetworkManager.request(model: UserProfile.self, endpoint: endpoint, method: .get) { (profile: UserProfile?, error: String?) in
-            completion(profile, error != nil ? NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: error!]) : nil)
+    
+    func fetchUserProfile(completion: @escaping (User?, String?) -> Void) {
+        NetworkManager.request(model: User.self, endpoint: "/user/profile", method: .get) { user, error in
+            if let error = error {
+                print("Error fetching user profile: \(error)")
+                completion(nil, error)
+                return
+            }
+            completion(user, nil)
         }
     }
 
-    func followUser(userToFollowId: Int, completion: @escaping (Error?) -> Void) {
-        let endpoint = "/follow/\(userToFollowId)"
-        NetworkManager.request(model: EmptyResponse.self, endpoint: endpoint, method: .post) { (_, error: String?) in
-            completion(error != nil ? NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: error!]) : nil)
+    func fetchUserDetails(completion: @escaping (UserDetails?, String?) -> Void) {
+        NetworkManager.request(model: UserDetails.self, endpoint: "/user/details", method: .get) { userDetails, error in
+            if let error = error {
+                print("Error fetching user details: \(error)")
+                completion(nil, error)
+                return
+            }
+            completion(userDetails, nil)
+        }
+    }
+    
+    func followUser(userToFollowId: Int, completion: @escaping (String?) -> Void) {
+        let parameters: [String: Any] = ["userId": userToFollowId]
+        NetworkManager.request(model: User.self, endpoint: "/user/follow", method: .post, parameters: parameters, isEncodingNeeded: true) { _, error in
+            completion(error)
         }
     }
 
-    func unfollowUser(userToUnfollowId: Int, completion: @escaping (Error?) -> Void) {
-        let endpoint = "/unfollow/\(userToUnfollowId)"
-        NetworkManager.request(model: EmptyResponse.self, endpoint: endpoint, method: .post) { (_, error: String?) in
-            completion(error != nil ? NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: error!]) : nil)
+    func unfollowUser(userToUnfollowId: Int, completion: @escaping (String?) -> Void) {
+        let parameters: [String: Any] = ["userId": userToUnfollowId]
+        NetworkManager.request(model: User.self, endpoint: "/user/unfollow", method: .post, parameters: parameters, isEncodingNeeded: true) { _, error in
+            completion(error)
+        }
+    }
+    
+    func fetchFollowersCount(completion: @escaping (Int?, String?) -> Void) {
+        NetworkManager.request(model: Int.self, endpoint: "/user/followers/count", method: .get) { count, error in
+            completion(count, error)
         }
     }
 
-    func fetchFollowersCount(completion: @escaping (Int?, Error?) -> Void) {
-        let endpoint = "/followersCount"
-        NetworkManager.request(model: Int.self, endpoint: endpoint, method: .get) { (count: Int?, error: String?) in
-            completion(count, error != nil ? NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: error!]) : nil)
-        }
-    }
-
-    func fetchFollowingCount(completion: @escaping (Int?, Error?) -> Void) {
-        let endpoint = "/followingCount"
-        NetworkManager.request(model: Int.self, endpoint: endpoint, method: .get) { (count: Int?, error: String?) in
-            completion(count, error != nil ? NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: error!]) : nil)
+    func fetchFollowingCount(completion: @escaping (Int?, String?) -> Void) {
+        NetworkManager.request(model: Int.self, endpoint: "/user/following/count", method: .get) { count, error in
+            completion(count, error)
         }
     }
 }
-
-struct EmptyResponse: Codable {}

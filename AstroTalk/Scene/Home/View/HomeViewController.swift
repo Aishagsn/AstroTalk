@@ -110,7 +110,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.filterUser = self.userList.filter { user in
-            return user.name.lowercased().contains(searchText.lowercased()) || searchText.isEmpty
+            if let firstName = user.firstName {
+                return firstName.lowercased().contains(searchText.lowercased()) || searchText.isEmpty
+            } else {
+                return searchText.isEmpty
+            }
         }
         self.storiesCollectionView.reloadData()
         self.motivationCollectionView.reloadData()
